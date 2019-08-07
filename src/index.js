@@ -7,13 +7,18 @@ import * as serviceWorker from "./serviceWorker";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
+import { DndProvider } from "react-dnd";
+import HTML5Backend from "react-dnd-html5-backend";
+
 import rootReducer from "./reducer";
 
 const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <DndProvider backend={HTML5Backend}>
+      <App />
+    </DndProvider>
   </Provider>,
   document.getElementById("root")
 );

@@ -1,37 +1,13 @@
 import { combineReducers } from "redux";
 
-const burgerCount = (state = 0, action) => {
+const completedBurger = (state = [], action) => {
   return state;
 };
 
-const selectedBurgerIngredients = (
-  state = [
-    {
-      name: "Cheese",
-      className: "ing-cheese"
-    },
-    {
-      name: "Pickles",
-      className: "ing-pickles"
-    },
-    {
-      name: "Lettuce",
-      className: "ing-lettuce"
-    },
-    {
-      name: "Tomato",
-      className: "ing-tomato"
-    },
-    {
-      name: "Patty",
-      className: "ing-patty"
-    }
-  ],
-  action
-) => {
+const selectedBurgerIngredients = (state = [], action) => {
   switch (action.type) {
     case "ADD_INGREDIENT": {
-      return [action.payload, ...state.ingredients];
+      return [action.payload, ...state];
     }
 
     default:
@@ -40,7 +16,7 @@ const selectedBurgerIngredients = (
 };
 
 const rootReducer = combineReducers({
-  burgerCount,
+  completedBurger,
   selectedBurgerIngredients
 });
 
