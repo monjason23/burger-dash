@@ -24,8 +24,10 @@ function GameBurger() {
     {
       config: config.wobbly,
       from: { height: 0, opacity: 0.5, transform: "scale(1.5)" },
-      enter: item => ({ height: 30, opacity: 1, transform: "scale(1)" }),
-      leave: { height: 0, opacity: 0, transform: "sclae(0)" }
+      enter: item => {
+        return { height: item.height, opacity: 1, transform: "scale(1)" };
+      },
+      leave: { height: 0, opacity: 0, transform: "scale(0)" }
     }
   );
 

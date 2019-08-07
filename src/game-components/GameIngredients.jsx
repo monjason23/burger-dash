@@ -10,27 +10,27 @@ function GameIngredients() {
     {
       name: "Cheese",
       className: "ing-cheese",
-      height: "10px"
+      height: 10
     },
     {
       name: "Pickles",
       className: "ing-pickles",
-      height: "15px"
+      height: 15
     },
     {
       name: "Lettuce",
       className: "ing-lettuce",
-      height: "25px"
+      height: 25
     },
     {
       name: "Tomato",
       className: "ing-tomato",
-      height: "20px"
+      height: 30
     },
     {
       name: "Patty",
       className: "ing-patty",
-      height: "40px"
+      height: 40
     }
   ];
 

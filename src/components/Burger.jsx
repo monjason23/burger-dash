@@ -97,7 +97,7 @@ const Container = React.forwardRef((props, ref) => {
         : "rotate(0deg) translateY(0px)",
     bottomBunTransformValue:
       props.status.canDrop && props.status.isOver
-        ? "scale(1.1) translateY(20px)"
+        ? "scale(1.1) translateY(-10px)"
         : "scale(1) translateY(0px)"
   });
 
