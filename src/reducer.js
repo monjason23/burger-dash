@@ -76,12 +76,6 @@ const burgerStatus = (
     }
 
     case "UPDATE_ORDERS": {
-      const index = state.orders.findIndex(
-        order => order.name === action.payload.name
-      );
-
-      if (!state.orders[index]) return state;
-
       return update(state, {
         orders: { $set: state.orders.filter(order => order.count > 0) }
       });
