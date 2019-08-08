@@ -31,6 +31,11 @@ function GameIngredients() {
       name: "Patty",
       className: "ing-patty",
       height: 40
+    },
+    {
+      name: "Bacon",
+      className: "ing-bacon",
+      height: 20
     }
   ];
 
@@ -47,6 +52,7 @@ function GameIngredients() {
 
 function DraggableItemIngredient(props) {
   const dispatch = useDispatch();
+
   const [{ isDragging }, drag, preview] = useDrag({
     item: { type: "BurgerIngredient" },
     end: (item, monitor) => {
@@ -60,9 +66,15 @@ function DraggableItemIngredient(props) {
   });
 
   function addIngredient() {
+    let payload = { key: rnd.generate(8), ...props.data };
+
     dispatch({
-      type: "ADD_INGREDIENT",
-      payload: { key: rnd.generate(8), ...props.data }
+      type: "ADD_INGREDIENT_BURGER",
+      payload
+    });
+
+    dispatch({
+      type: "UPDATE_ORDERS"
     });
   }
 

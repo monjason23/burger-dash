@@ -1,14 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useDrop } from "react-dnd";
+import { useTransition, config } from "react-spring";
 
-import { useTransition, config, animated as a } from "react-spring";
 import Burger from "../components/Burger";
 
 function GameBurger() {
-  const selectedBurgerIngredients = useSelector(
-    state => state.selectedBurgerIngredients
-  );
+  const { burgers, burgerIndex } = useSelector(state => state.burgerStatus);
+
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: "BurgerIngredient",
     drop: () => ({ name: "Dustbin" }),
@@ -18,25 +17,29 @@ function GameBurger() {
     })
   });
 
-  const ingredientTransitions = useTransition(
-    selectedBurgerIngredients,
-    ing => ing.key,
+  const ingredientTransition = useTransition(
+    burgers[burgerIndex].ingredients,
+    item => item.key,
     {
       config: config.wobbly,
       from: { height: 0, opacity: 0.5, transform: "scale(1.5)" },
-      enter: item => {
-        return { height: item.height, opacity: 1, transform: "scale(1)" };
-      },
-      leave: { height: 0, opacity: 0, transform: "scale(0)" }
+      enter: item => ({
+        height: item.height,
+        opacity: 1,
+        transform: "scale(1)"
+      })
     }
   );
 
   function renderAnimatedBurgerIngredients() {
-    return ingredientTransitions.map(({ item, props, key }, index) => (
+    return ingredientTransition.map(({ item, props, key }, index) => (
       <Burger.Ingredient
         key={key}
         className={item.className}
-        style={{ zIndex: selectedBurgerIngredients.length - index, ...props }}
+        style={{
+          zIndex: burgers[burgerIndex].ingredients.length - index,
+          ...props
+        }}
       >
         <img src={require(`../img/${item.name}.svg`)} alt={item.name} />
       </Burger.Ingredient>
@@ -44,7 +47,7 @@ function GameBurger() {
   }
 
   return (
-    <Burger.Container ref={drop} status={{ isOver, canDrop }}>
+    <Burger.Container ref={drop} dragStatus={{ isOver, canDrop }}>
       <Burger.IngredientsList>
         {renderAnimatedBurgerIngredients()}
       </Burger.IngredientsList>

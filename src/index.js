@@ -8,7 +8,10 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 
 import { DndProvider } from "react-dnd";
+import { isMobile } from "react-device-detect";
+
 import HTML5Backend from "react-dnd-html5-backend";
+import TouchBackend from "react-dnd-touch-backend";
 
 import rootReducer from "./reducer";
 
@@ -16,7 +19,7 @@ const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>
-    <DndProvider backend={HTML5Backend}>
+    <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
       <App />
     </DndProvider>
   </Provider>,

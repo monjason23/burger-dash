@@ -6,13 +6,12 @@ import { useSpring, config, animated as a } from "react-spring";
 import BottomBun from "../img/BottomBun.svg";
 import TopBun from "../img/TopBun.svg";
 
-const BurgerContainer = styled.div`
+const BurgerContainer = styled(a.div)`
   position: absolute;
-  bottom: 0px;
+  bottom: 24px;
   width: 310px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #fff;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -60,7 +59,8 @@ const Ingredient = styled(a.li)`
     }
   }
 
-  &.ing-patty {
+  &.ing-patty,
+  &.ing-bacon {
     height: 40px;
     img {
       width: 280px;
@@ -92,11 +92,11 @@ const Container = React.forwardRef((props, ref) => {
   const { topBunTransformValue, bottomBunTransformValue } = useSpring({
     config: { ...config.wobbly },
     topBunTransformValue:
-      props.status.canDrop && props.status.isOver
+      props.dragStatus.canDrop && props.dragStatus.isOver
         ? "rotate(-20deg) translateY(-150px)"
         : "rotate(0deg) translateY(0px)",
     bottomBunTransformValue:
-      props.status.canDrop && props.status.isOver
+      props.dragStatus.canDrop && props.dragStatus.isOver
         ? "scale(1.1) translateY(-10px)"
         : "scale(1) translateY(0px)"
   });
