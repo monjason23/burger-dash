@@ -3,7 +3,7 @@ import { useSelector, shallowEqual } from "react-redux";
 import { useDrop } from "react-dnd";
 import { useTransition, config } from "react-spring";
 
-import Burger from "../components/Burger";
+import Burger from "./../components/Burger";
 
 function GameBurger() {
   const burgers = useSelector(state => state.gameStatus.burgers, shallowEqual);
@@ -27,14 +27,22 @@ function GameBurger() {
     item => item.key,
     {
       config: config.wobbly,
-      from: { height: 0, opacity: 0.5, transform: "scale(1.5)" },
+      from: {
+        height: 0,
+        opacity: 0.7,
+        transform: "translate3d(0px, -10px, 0px) scale(1.5)"
+      },
       enter: item => ({
         height: item.height,
         opacity: 1,
-        transform: "scale(1)"
+        transform: `translate3d(${randomAxisX()}px, 0px, 0px) scale(1)`
       })
     }
   );
+
+  function randomAxisX() {
+    return Math.floor(Math.random() * 16) - 8;
+  }
 
   function renderAnimatedBurgerIngredients() {
     return ingredientTransition.map(({ item, props, key }, index) => (
