@@ -2,6 +2,8 @@ import { combineReducers } from "redux";
 import update from "immutability-helper";
 import _ from "lodash";
 
+import { gameConstants } from "./actions";
+
 const IngredientsArray = [
   "Cheese",
   "Pickles",
@@ -15,34 +17,35 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * max + min);
 }
 
-function randomizeOrder() {
+function randomizeOrder(num) {
   let currentOrders = [];
-  let numOfOrders = randomNumber(1, IngredientsArray.length);
+  let shuffledIngredients = _.shuffle(IngredientsArray);
+  let orders = _.take(shuffledIngredients, num);
 
-  for (let i = 0; i < numOfOrders; i++) {
-    let randomIndex = randomNumber(0, IngredientsArray.length - 1);
+  for (let i = 0; i < orders.length; i++) {
     let newOrder = {
-      name: IngredientsArray[randomIndex],
+      name: shuffledIngredients[i],
       count: randomNumber(1, 3)
     };
 
     currentOrders.push(newOrder);
   }
 
-  return _.uniqBy(currentOrders, "name");
+  return currentOrders;
 }
 
-const burgerStatus = (
-  state = {
-    burgers: [{ ingredients: [] }],
-    burgerIndex: 0,
-    burgerCount: 0,
-    orders: randomizeOrder()
-  },
-  action
-) => {
+const gameInitialStatus = {
+  burgers: [{ ingredients: [] }],
+  burgerIndex: 0,
+  score: 0,
+  time: 60,
+  lives: 3,
+  orders: randomizeOrder(3)
+};
+
+const gameStatus = (state = gameInitialStatus, action) => {
   switch (action.type) {
-    case "ADD_INGREDIENT_BURGER": {
+    case gameConstants.ADD_INGREDIENT_BURGER: {
       const index = state.orders.findIndex(
         order => order.name === action.payload.name
       );
@@ -62,33 +65,45 @@ const burgerStatus = (
       });
     }
 
-    case "NEXT_BURGER": {
+    case gameConstants.NEXT_BURGER: {
       return update(state, {
         burgers: { $push: [{ ingredients: [] }] },
         burgerIndex: { $set: ++state.burgerIndex }
       });
     }
 
-    case "RANDOMIZE_ORDER": {
+    case gameConstants.RANDOMIZE_ORDERS: {
       return update(state, {
-        orders: { $set: randomizeOrder() }
+        orders: { $set: randomizeOrder(3) }
       });
     }
 
-    case "UPDATE_ORDERS": {
+    case gameConstants.UPDATE_ORDERS: {
       return update(state, {
         orders: { $set: state.orders.filter(order => order.count > 0) }
       });
     }
 
-    case "RESTART":
+    case gameConstants.UPDATE_SCORE: {
+      return update(state, { score: { $set: state.score + 10 } });
+    }
+
+    case gameConstants.UPDATE_TIME: {
+      return update(state, { time: { $set: action.payload } });
+    }
+
+    case gameConstants.UPDATE_LIVES: {
+      return update(state, { lives: { $set: state.lives - 1 } });
+    }
+
+    case gameConstants.RESTART:
     default:
-      return state;
+      return gameInitialStatus;
   }
 };
 
 const rootReducer = combineReducers({
-  burgerStatus
+  gameStatus
 });
 
 export default rootReducer;

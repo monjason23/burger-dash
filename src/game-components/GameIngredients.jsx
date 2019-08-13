@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useDrag, DragPreviewImage } from "react-dnd";
-import rnd from "randomstring";
+import { updateBurgerContent } from "./../actions";
 
-import Ingredients from "../components/Ingredients";
+import Ingredients from "./../components/Ingredients";
 
 function GameIngredients() {
   const IngredientsArray = [
@@ -57,26 +57,13 @@ function DraggableItemIngredient(props) {
     item: { type: "BurgerIngredient" },
     end: (item, monitor) => {
       if (item && monitor.getDropResult()) {
-        addIngredient();
+        dispatch(updateBurgerContent(props.data));
       }
     },
     collect: monitor => ({
       isDragging: monitor.isDragging()
     })
   });
-
-  function addIngredient() {
-    let payload = { key: rnd.generate(8), ...props.data };
-
-    dispatch({
-      type: "ADD_INGREDIENT_BURGER",
-      payload
-    });
-
-    dispatch({
-      type: "UPDATE_ORDERS"
-    });
-  }
 
   return (
     <>

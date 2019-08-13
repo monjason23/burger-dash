@@ -4,8 +4,9 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
 import { DndProvider } from "react-dnd";
 import { isMobile } from "react-device-detect";
@@ -15,7 +16,7 @@ import TouchBackend from "react-dnd-touch-backend";
 
 import rootReducer from "./reducer";
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>

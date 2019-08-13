@@ -1,26 +1,24 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
 import { useTransition, config } from "react-spring";
 
 import Order from "../components/Order";
 
 function GameOrder() {
-  const { orders, burgers, burgerIndex } = useSelector(
-    state => state.burgerStatus
-  );
+  const orders = useSelector(state => state.gameStatus.orders, shallowEqual);
 
   const ordersTransition = useTransition(orders, item => item.name, {
     config: config.wobbly,
-    from: { height: 0, opacity: 0.5, transform: "translateX(-100%)" },
+    from: { height: 40, opacity: 0.5, transform: "translateX(-100%) scale(1)" },
     enter: {
       height: 40,
       opacity: 1,
-      transform: "translateX(0%)"
+      transform: "translateX(0%) scale(1)"
     },
     leave: {
       height: 0,
       opacity: 0,
-      transform: "translateX(-100%)"
+      transform: "translateX(0%) scale(0)"
     }
   });
 

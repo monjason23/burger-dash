@@ -1,11 +1,15 @@
 import React from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useTransition, config, animated as a } from "react-spring";
+import { moveToNextBurger } from "./actions";
 
 import GameBurger from "./game-components/GameBurger";
 import GameIngredients from "./game-components/GameIngredients";
 import GameOrder from "./game-components/GameOrder";
+import GameTimer from "./game-components/GameTimer";
+import GameScore from "./game-components/GameScore";
+import GameLives from "./game-components/GameLives";
 
 import styled from "styled-components";
 
@@ -28,31 +32,31 @@ const GameBurgerSlideContainer = styled(a.div)`
 function App() {
   const dispatch = useDispatch();
 
-  function serverBurger() {
-    dispatch({
-      type: "NEXT_BURGER"
-    });
-
-    dispatch({
-      type: "RANDOMIZE_ORDER"
-    });
+  function serveBurger() {
+    dispatch(moveToNextBurger());
   }
 
   return (
     <div className="App">
       <GameMainContainer>
+        <GameLives />
+        <GameScore />
+        <GameTimer />
         <GameOrder />
         <GameSlidingBurgers />
         <GameIngredients />
       </GameMainContainer>
 
-      <button onClick={serverBurger}>SERVE</button>
+      <button onClick={serveBurger}>SERVE</button>
     </div>
   );
 }
 
 function GameSlidingBurgers() {
-  const { burgerIndex, orders } = useSelector(state => state.burgerStatus);
+  const burgerIndex = useSelector(
+    state => state.gameStatus.burgerIndex,
+    shallowEqual
+  );
 
   const burgerTransition = useTransition(burgerIndex, item => item, {
     config: config.wobbly,
@@ -62,7 +66,6 @@ function GameSlidingBurgers() {
   });
 
   function renderAnimatedBurgerList() {
-    console.log(orders);
     return burgerTransition.map(({ item, props, key }) => (
       <GameBurgerSlideContainer key={key} style={props}>
         <GameBurger />

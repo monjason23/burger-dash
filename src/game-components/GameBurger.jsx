@@ -1,12 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, shallowEqual } from "react-redux";
 import { useDrop } from "react-dnd";
 import { useTransition, config } from "react-spring";
 
 import Burger from "../components/Burger";
 
 function GameBurger() {
-  const { burgers, burgerIndex } = useSelector(state => state.burgerStatus);
+  const burgers = useSelector(state => state.gameStatus.burgers, shallowEqual);
+
+  const burgerIndex = useSelector(
+    state => state.gameStatus.burgerIndex,
+    shallowEqual
+  );
 
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: "BurgerIngredient",
