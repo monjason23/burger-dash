@@ -1,7 +1,7 @@
 {
   "name": "burger-dash",
   "version": "0.1.0",
-  "homepage": "http://monjason23.github.io/burger-dash/",
+  "homepage": "http://monjason23.github.io/burger-dash",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",

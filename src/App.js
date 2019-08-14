@@ -33,7 +33,7 @@ function App() {
   const dispatch = useDispatch();
 
   return (
-    <div className="App">
+    <div className="App" onDoubleClick={() => alert("HEY")}>
       <GameMainContainer>
         <GameLives />
         <GameScore />
