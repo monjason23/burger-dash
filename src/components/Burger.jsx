@@ -102,7 +102,7 @@ const Container = React.forwardRef((props, ref) => {
   });
 
   return (
-    <BurgerContainer ref={ref}>
+    <BurgerContainer ref={ref} onDoubleClick={props.onDoubleClick}>
       <TopBunContainer
         style={{
           transform: topBunTransformValue.interpolate(d => d)
