@@ -2,7 +2,7 @@ import React from "react";
 
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useTransition, config, animated as a } from "react-spring";
-import { moveToNextBurger } from "./actions";
+import { serveBurger } from "./actions";
 
 import GameBurger from "./game-components/GameBurger";
 import GameIngredients from "./game-components/GameIngredients";
@@ -19,6 +19,7 @@ const GameMainContainer = styled.div`
   height: 640px;
   border: 1px solid #eee;
   overflow: hidden;
+  user-select: none;
 `;
 
 const GameBurgerSlideContainer = styled(a.div)`
@@ -32,10 +33,6 @@ const GameBurgerSlideContainer = styled(a.div)`
 function App() {
   const dispatch = useDispatch();
 
-  function serveBurger() {
-    dispatch(moveToNextBurger());
-  }
-
   return (
     <div className="App">
       <GameMainContainer>
@@ -47,7 +44,7 @@ function App() {
         <GameIngredients />
       </GameMainContainer>
 
-      <button onClick={serveBurger}>SERVE</button>
+      <button onClick={() => dispatch(serveBurger())}>SERVE</button>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { gameConstants } from "./../actions";
+import gameConstants from "./../constants";
 
 import Timer from "./../components/Timer";
 
@@ -8,9 +8,8 @@ function GameTimer() {
   const dispatch = useDispatch();
   const time = useSelector(state => state.gameStatus.time, shallowEqual);
 
-  let interval = null;
-
   useEffect(() => {
+    let interval = null;
     if (!interval) {
       interval = setInterval(() => {
         if (time > 0) {
@@ -20,7 +19,7 @@ function GameTimer() {
     }
 
     return () => clearInterval(interval);
-  }, [time]);
+  });
 
   return (
     <Timer.Container>

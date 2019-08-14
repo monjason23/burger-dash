@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useDrag, DragPreviewImage } from "react-dnd";
+import { useDrag, DragPreviewImage, connectDragPreview } from "react-dnd";
 import { updateBurgerContent } from "./../actions";
 
 import Ingredients from "./../components/Ingredients";
@@ -52,6 +52,7 @@ function GameIngredients() {
 
 function DraggableItemIngredient(props) {
   const dispatch = useDispatch();
+  const imgSrc = require(`./../img/${props.data.name}.svg`);
 
   const [{ isDragging }, drag, preview] = useDrag({
     item: { type: "BurgerIngredient" },
@@ -69,13 +70,9 @@ function DraggableItemIngredient(props) {
     <>
       <DragPreviewImage
         connect={preview}
-        src={require(`../img/${props.data.name}.svg`)}
+        src={require(`./../img/${props.data.name}.png`)}
       />
-      <img
-        ref={drag}
-        src={require(`../img/${props.data.name}.svg`)}
-        alt={props.data.name}
-      />
+      <img ref={drag} src={imgSrc} alt={props.data.name} />
     </>
   );
 }

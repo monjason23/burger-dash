@@ -1,0 +1,27 @@
+const gameConstants = {
+  //BURGER STATUS
+  ADD_INGREDIENT_BURGER: "ADD_INGREDIENT_BURGER",
+  NEXT_BURGER: "NEXT_BURGER",
+  SERVE_BURGER: "SERVE_BURGER",
+  RANDOMIZE_ORDERS: "RANDOMIZE_ORDERS",
+  UPDATE_ORDERS: "UPDATE_ORDERS",
+  RESTART: "RESTART",
+
+  //GAME STATUS
+  UPDATE_SCORE: "UPDATE_SCORE",
+  UPDATE_TIME: "UPDATE_TIME",
+  UPDATE_LIVES: "UPDATE_LIVES",
+  UPDATE_WINSTREAK: "UPDATE_WINSTREAK",
+  UPDATE_EXACTORDER: "UPDATE_EXACTORDER"
+};
+
+export const IngredientsArray = [
+  "Cheese",
+  "Pickles",
+  "Lettuce",
+  "Tomato",
+  "Patty",
+  "Bacon"
+];
+
+export default gameConstants;

@@ -9,9 +9,9 @@ function GameOrder() {
 
   const ordersTransition = useTransition(orders, item => item.name, {
     config: config.wobbly,
-    from: { height: 40, opacity: 0.5, transform: "translateX(-100%) scale(1)" },
+    from: { height: 44, opacity: 0.5, transform: "translateX(-100%) scale(1)" },
     enter: {
-      height: 40,
+      height: 44,
       opacity: 1,
       transform: "translateX(0%) scale(1)"
     },
@@ -25,10 +25,13 @@ function GameOrder() {
   function renderOrders() {
     return ordersTransition.map(({ item, props, key }) => {
       return (
-        <Order.Item key={key} style={props}>
-          {item.name}
+        <Order.Item key={key} style={props} count={item.count}>
+          <Order.Image>
+            <img src={require(`./../img/${item.name}.svg`)} alt={item.name} />
+          </Order.Image>
+          <Order.Label>{item.name}</Order.Label>
           <Order.Count>
-            x <strong>{item.count}</strong>
+            x <strong>{item.count !== 0 ? item.count : 1}</strong>
           </Order.Count>
         </Order.Item>
       );

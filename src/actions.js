@@ -1,18 +1,5 @@
 import rnd from "randomstring";
-
-export const gameConstants = {
-  //BURGER STATUS
-  ADD_INGREDIENT_BURGER: "ADD_INGREDIENT_BURGER",
-  NEXT_BURGER: "NEXT_BURGER",
-  RANDOMIZE_ORDERS: "RANDOMIZE_ORDERS",
-  UPDATE_ORDERS: "UPDATE_ORDERS",
-  RESTART: "RESTART",
-
-  //GAME STATUS
-  UPDATE_SCORE: "UPDATE_SCORE",
-  UPDATE_TIME: "UPDATE_TIME",
-  UPDATE_LIVES: "UPDATE_LIVES"
-};
+import gameConstants from "./constants";
 
 export function updateBurgerContent(payload) {
   return (dispatch, getState) => {
@@ -29,29 +16,38 @@ export function updateBurgerContent(payload) {
       type: gameConstants.ADD_INGREDIENT_BURGER,
       payload: payloadWithKey
     });
+
     dispatch({ type: gameConstants.UPDATE_ORDERS });
 
     if (index === -1) {
       dispatch({ type: gameConstants.UPDATE_LIVES });
+      dispatch({ type: gameConstants.UPDATE_EXACTORDER, payload: false });
     }
   };
 }
 
-export function moveToNextBurger() {
+export function serveBurger() {
   return (dispatch, getState) => {
-    let orderLength = getState().gameStatus.orders.length;
+    let { orders, exactOrder, time, lives, winStreak } = getState().gameStatus;
 
     dispatch({
-      type: gameConstants.NEXT_BURGER
-    });
-    dispatch({
-      type: gameConstants.RANDOMIZE_ORDERS
+      type: gameConstants.SERVE_BURGER
     });
 
-    if (getState().gameStatus.time > 0 && orderLength === 0) {
+    if (time > 0 && lives > 0 && orders.length === 0) {
       dispatch({
-        type: gameConstants.UPDATE_SCORE
+        type: gameConstants.UPDATE_WINSTREAK,
+        payload: exactOrder
       });
+
+      console.log("SCORE TO ADD", winStreak * (exactOrder ? 10 : 5));
+
+      dispatch({
+        type: gameConstants.UPDATE_SCORE,
+        payload: winStreak * (exactOrder ? 10 : 5)
+      });
+
+      dispatch({ type: gameConstants.UPDATE_EXACTORDER, payload: true });
     }
   };
 }

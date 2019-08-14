@@ -9,9 +9,7 @@ function GameLives() {
   const lives = useSelector(state => state.gameStatus.lives, shallowEqual);
 
   function renderHearts() {
-    return _.range(lives).map((i, idx) => (
-      <Lives.Heart key={idx}>{"<3"}</Lives.Heart>
-    ));
+    return _.range(lives).map(i => <Lives.Heart key={i}>{"<3"}</Lives.Heart>);
   }
 
   return <Lives.Container>{renderHearts()}</Lives.Container>;

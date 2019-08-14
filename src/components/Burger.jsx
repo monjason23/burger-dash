@@ -8,7 +8,7 @@ import TopBun from "../img/TopBun.svg";
 
 const BurgerContainer = styled(a.div)`
   position: absolute;
-  bottom: 24px;
+  bottom: 80px;
   width: 310px;
   left: 50%;
   transform: translateX(-50%);
