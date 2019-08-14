@@ -12,7 +12,7 @@ const helpers = {
     for (let i = 0; i < orders.length; i++) {
       let newOrder = {
         name: shuffledIngredients[i],
-        count: this.randomNumber(1, 1)
+        count: this.randomNumber(1, 2)
       };
 
       currentOrders.push(newOrder);

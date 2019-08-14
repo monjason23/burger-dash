@@ -2,7 +2,6 @@ import React from "react";
 
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useTransition, config, animated as a } from "react-spring";
-import { serveBurger } from "./actions";
 
 import GameBurger from "./game-components/GameBurger";
 import GameIngredients from "./game-components/GameIngredients";
@@ -43,8 +42,6 @@ function App() {
         <GameSlidingBurgers />
         <GameIngredients />
       </GameMainContainer>
-
-      <button onClick={() => dispatch(serveBurger())}>SERVE</button>
     </div>
   );
 }

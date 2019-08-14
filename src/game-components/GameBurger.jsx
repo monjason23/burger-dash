@@ -1,13 +1,15 @@
 import React from "react";
-import { useSelector, shallowEqual } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useDrop } from "react-dnd";
 import { useTransition, config } from "react-spring";
+
+import { serveBurger } from "./../actions";
 
 import Burger from "./../components/Burger";
 
 function GameBurger() {
+  const dispatch = useDispatch();
   const burgers = useSelector(state => state.gameStatus.burgers, shallowEqual);
-
   const burgerIndex = useSelector(
     state => state.gameStatus.burgerIndex,
     shallowEqual
@@ -60,7 +62,11 @@ function GameBurger() {
   }
 
   return (
-    <Burger.Container ref={drop} dragStatus={{ isOver, canDrop }}>
+    <Burger.Container
+      ref={drop}
+      dragStatus={{ isOver, canDrop }}
+      onDoubleClick={() => dispatch(serveBurger())}
+    >
       <Burger.IngredientsList>
         {renderAnimatedBurgerIngredients()}
       </Burger.IngredientsList>

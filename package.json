@@ -1,6 +1,7 @@
 {
   "name": "burger-dash",
   "version": "0.1.0",
+  "homepage": "http://monjason23.github.io/burger-dash/",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
@@ -26,6 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
