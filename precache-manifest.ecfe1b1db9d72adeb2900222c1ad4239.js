@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "297e28f9542315fb8e044844add4980d",
+    "revision": "51c43dd9f1e2022891d10c1c5c0f399c",
     "url": "/burger-dash/index.html"
   },
   {
-    "revision": "0553132f024bb0a662fc",
+    "revision": "0b84d20a31fb620a27d0",
     "url": "/burger-dash/static/css/main.34de6062.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/burger-dash/static/js/2.b60817b3.chunk.js"
   },
   {
-    "revision": "0553132f024bb0a662fc",
-    "url": "/burger-dash/static/js/main.71e5999b.chunk.js"
+    "revision": "0b84d20a31fb620a27d0",
+    "url": "/burger-dash/static/js/main.0e386899.chunk.js"
   },
   {
     "revision": "a1318d97235daa6de168",
