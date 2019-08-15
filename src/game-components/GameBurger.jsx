@@ -10,6 +10,11 @@ import Burger from "./../components/Burger";
 function GameBurger() {
   const dispatch = useDispatch();
   const burgers = useSelector(state => state.gameStatus.burgers, shallowEqual);
+  const ordersComplete = useSelector(
+    state => state.gameStatus.orders.length === 0,
+    shallowEqual
+  );
+
   const burgerIndex = useSelector(
     state => state.gameStatus.burgerIndex,
     shallowEqual
@@ -61,16 +66,23 @@ function GameBurger() {
     ));
   }
 
+  function handleOnClick() {
+    if (!ordersComplete) return;
+    dispatch(serveBurger());
+  }
+
   return (
-    <Burger.Container
-      ref={drop}
-      dragStatus={{ isOver, canDrop }}
-      onDoubleClick={() => dispatch(serveBurger())}
-    >
-      <Burger.IngredientsList>
-        {renderAnimatedBurgerIngredients()}
-      </Burger.IngredientsList>
-    </Burger.Container>
+    <>
+      <Burger.Container
+        ref={drop}
+        dragStatus={{ isOver, canDrop }}
+        onClick={handleOnClick}
+      >
+        <Burger.IngredientsList>
+          {renderAnimatedBurgerIngredients()}
+        </Burger.IngredientsList>
+      </Burger.Container>
+    </>
   );
 }
 

@@ -30,6 +30,8 @@ export function serveBurger() {
   return (dispatch, getState) => {
     let { orders, exactOrder, time, lives, winStreak } = getState().gameStatus;
 
+    if (orders.length > 0) return;
+
     dispatch({
       type: gameConstants.SERVE_BURGER
     });

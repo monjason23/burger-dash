@@ -9,16 +9,13 @@ function GameOrder() {
 
   const ordersTransition = useTransition(orders, item => item.name, {
     config: config.wobbly,
-    from: { height: 44, opacity: 0.5, transform: "translateX(-100%) scale(1)" },
-    enter: {
-      height: 44,
-      opacity: 1,
-      transform: "translateX(0%) scale(1)"
-    },
+    trail: 100,
+    from: { height: 44, opacity: 1, transform: "scale(1) translateX(-110%)" },
+    enter: { transform: "scale(1) translateX(0%)" },
     leave: {
       height: 0,
       opacity: 0,
-      transform: "translateX(0%) scale(0)"
+      transform: "scale(0) translateX(0%)"
     }
   });
 

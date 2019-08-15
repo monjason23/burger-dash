@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSpring, animated as a } from "react-spring";
 import { easeBackOut } from "d3-ease";
 import styled from "styled-components";
 
-const Container = styled.div`
+const Container = styled(a.div)`
   position: absolute;
   width: 180px;
   display: flex;
-
   flex-direction: column;
-  top: 72px;
+  top: 48px;
   left: 16px;
 `;
 
 const ItemWrapper = styled(a.div)`
   width: 100%;
+  height: 44px;
   box-sizing: border-box;
   border-radius: 8px;
   color: #000;
@@ -23,7 +23,7 @@ const ItemWrapper = styled(a.div)`
 `;
 
 const ItemContent = styled(a.div)`
-  background-color: rgba(0, 0, 0, 0.01);
+  background-color: #fff;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
@@ -42,8 +42,20 @@ const Count = styled.div`
   margin-left: auto;
 `;
 
+function usePrevious(value) {
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current = value;
+    // console.log(ref.current);
+  });
+
+  return ref.current;
+}
+
 function Item(props) {
   const [animate, setAnimate] = useState(false);
+  const prevCount = usePrevious(props.count);
 
   const contentProps = useSpring({
     config: {
@@ -56,9 +68,11 @@ function Item(props) {
   useEffect(() => {
     let timeout = null;
 
-    if (props.count > 0) setAnimate(true);
-
     if (animate) clearTimeout(timeout);
+
+    if (prevCount > props.count && props.count !== 0) {
+      setAnimate(true);
+    }
 
     timeout = setTimeout(() => {
       setAnimate(false);

@@ -7,7 +7,7 @@ const Container = styled(a.div)`
   border-radius: 8px;
   background-color: #000;
   text-align: center;
-  top: 72px;
+  top: 48px;
   right: 16px;
   background: linear-gradient(
     to bottom,

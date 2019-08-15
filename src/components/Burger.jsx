@@ -3,12 +3,15 @@ import styled from "styled-components";
 
 import { useSpring, config, animated as a } from "react-spring";
 
-import BottomBun from "../img/BottomBun.svg";
-import TopBun from "../img/TopBun.svg";
+import BottomBun from "./../img/BottomBun.svg";
+import TopBun from "./../img/TopBun.svg";
+import Plate from "./../img/Plate.png";
+
+import { device } from "./../constants";
 
 const BurgerContainer = styled(a.div)`
   position: absolute;
-  bottom: 80px;
+  bottom: 140px;
   width: 310px;
   left: 50%;
   transform: translateX(-50%);
@@ -16,6 +19,12 @@ const BurgerContainer = styled(a.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  @media ${device.tablet} {
+    bottom: 80px;
+  }
 `;
 
 const IngredientsList = styled.ul`
@@ -85,7 +94,18 @@ const TopBunContainer = styled(a.div)`
 const BottomBunContainer = styled(a.div)`
   position: relative;
   width: 300px;
-  z-index: 0;
+  z-index: 2;
+`;
+
+const PlateContainer = styled(a.div)`
+  position: absolute;
+  width: 470px;
+  bottom: -80px;
+  z-index: 1;
+
+  img {
+    width: 100%;
+  }
 `;
 
 const Container = React.forwardRef((props, ref) => {
@@ -101,8 +121,13 @@ const Container = React.forwardRef((props, ref) => {
         : "scale(1) translateY(0px)"
   });
 
+  function onClick(e) {
+    e.preventDefault();
+    props.onClick();
+  }
+
   return (
-    <BurgerContainer ref={ref} onDoubleClick={props.onDoubleClick}>
+    <BurgerContainer ref={ref} onClick={onClick}>
       <TopBunContainer
         style={{
           transform: topBunTransformValue.interpolate(d => d)
@@ -112,7 +137,7 @@ const Container = React.forwardRef((props, ref) => {
       </TopBunContainer>
       <a.div
         style={{
-          zIndex: 1,
+          zIndex: 3,
           transform: bottomBunTransformValue.interpolate(d => d)
         }}
       >
@@ -126,6 +151,9 @@ const Container = React.forwardRef((props, ref) => {
       >
         <img src={BottomBun} alt="Bottom Bun" />
       </BottomBunContainer>
+      <PlateContainer>
+        <img src={Plate} alt="Plate" />
+      </PlateContainer>
     </BurgerContainer>
   );
 });

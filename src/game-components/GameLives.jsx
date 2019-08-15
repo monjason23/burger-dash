@@ -1,6 +1,8 @@
 import React from "react";
 
 import { useSelector, shallowEqual } from "react-redux";
+import { useTransition } from "react-spring";
+
 import Lives from "./../components/Lives";
 
 import _ from "lodash";
@@ -8,8 +10,18 @@ import _ from "lodash";
 function GameLives() {
   const lives = useSelector(state => state.gameStatus.lives, shallowEqual);
 
+  const heartTransition = useTransition(_.range(lives), item => item, {
+    from: { transform: "scale(1)", opacity: 1 },
+    enter: { transform: "scale(1)", opacity: 1 },
+    leave: { transform: "scale(3)", opacity: 0 }
+  });
+
   function renderHearts() {
-    return _.range(lives).map(i => <Lives.Heart key={i}>{"<3"}</Lives.Heart>);
+    return heartTransition.map(({ props, key }) => (
+      <Lives.Heart style={props} key={key}>
+        <img src={require("./../img/Heart.svg")} alt="Heart" />
+      </Lives.Heart>
+    ));
   }
 
   return <Lives.Container>{renderHearts()}</Lives.Container>;
