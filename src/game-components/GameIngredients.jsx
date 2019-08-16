@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag, DragPreviewImage } from "react-dnd";
 import { isMobile } from "react-device-detect";
-import { useSpring, animated as a, config } from "react-spring";
+import useWindowSize from "react-use-window-size";
+
 import Draggable from "react-draggable";
 
 import { updateBurgerContent } from "./../actions";
@@ -10,36 +11,38 @@ import { updateBurgerContent } from "./../actions";
 import Ingredients from "./../components/Ingredients";
 
 function GameIngredients() {
+  const { width } = useWindowSize();
+
   const IngredientsArray = [
     {
       name: "Cheese",
       className: "ing-cheese",
-      height: 10
+      height: width >= 375 ? 10 : 5
     },
     {
       name: "Pickles",
       className: "ing-pickles",
-      height: 15
+      height: width >= 375 ? 15 : 10
     },
     {
       name: "Lettuce",
       className: "ing-lettuce",
-      height: 25
+      height: width >= 375 ? 25 : 10
     },
     {
       name: "Tomato",
       className: "ing-tomato",
-      height: 30
+      height: width >= 375 ? 30 : 10
     },
     {
       name: "Patty",
       className: "ing-patty",
-      height: 40
+      height: width >= 375 ? 40 : 20
     },
     {
       name: "Bacon",
       className: "ing-bacon",
-      height: 20
+      height: width >= 375 ? 20 : 10
     }
   ];
 
@@ -56,10 +59,10 @@ function GameIngredients() {
 
 function DraggableItemIngredient(props) {
   const [dragging, setDragging] = useState(false);
-  const dragProp = useSpring({
-    config: config.wobbly,
-    transform: dragging ? "scale(5)" : "scale(1)"
-  });
+  // const dragProp = useSpring({
+  //   config: config.wobbly,
+  //   transform: dragging ? "scale(5)" : "scale(1)"
+  // });
 
   const dispatch = useDispatch();
   const imgSrc = require(`./../img/${props.data.name}.svg`);
@@ -103,9 +106,8 @@ function DraggableItemIngredient(props) {
             onStop={handleOnStop}
           >
             <div>
-              <a.img
-                className="handle"
-                style={dragging ? dragProp : {}}
+              <img
+                className={`handle draggable${dragging ? " zoom" : ""}`}
                 ref={drag}
                 src={imgSrc}
                 alt={props.data.name}

@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 
-import GameSlidingBurgers from "./game-components/GameBurger";
+import GameBurger from "./game-components/GameBurger";
 import GameIngredients from "./game-components/GameIngredients";
 import GameOrder from "./game-components/GameOrder";
 import GameTimer from "./game-components/GameTimer";
@@ -42,7 +42,7 @@ function App() {
         <GameScore />
         <GameTimer />
         <GameOrder />
-        <GameSlidingBurgers />
+        <GameBurger />
         <GameIngredients />
       </GameMainContainer>
     </div>

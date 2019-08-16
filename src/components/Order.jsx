@@ -3,13 +3,20 @@ import { useSpring, animated as a } from "react-spring";
 import { easeBackOut } from "d3-ease";
 import styled from "styled-components";
 
+import { device } from "./../constants";
+
 const Container = styled(a.div)`
   position: absolute;
-  width: 180px;
+  width: 140px;
   display: flex;
   flex-direction: column;
   top: 48px;
-  left: 16px;
+  left: 8px;
+
+  @media ${device.mobileL} {
+    left: 16px;
+    width: 180px;
+  }
 `;
 
 const ItemWrapper = styled(a.div)`
@@ -48,7 +55,6 @@ function usePrevious(value) {
 
   useEffect(() => {
     ref.current = value;
-    // console.log(ref.current);
   });
 
   return ref.current;

@@ -41,3 +41,15 @@ body,
     transform: rotate(360deg);
   }
 }
+
+/* Draggable image transition */
+
+img.draggable {
+  transform: scale(1);
+  will-change: transform;
+}
+
+img.draggable.zoom {
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform: scale(5);
+}

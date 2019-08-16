@@ -11,9 +11,9 @@ import Burger from "./../components/Burger";
 const GameBurgerSlideContainer = styled(a.div)`
   position: absolute;
   width: 100%;
-  height: 100%;
   left: 0;
   bottom: 0;
+  will-change: transform;
 `;
 
 function AnimatedBurger() {
