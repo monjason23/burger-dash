@@ -98,7 +98,7 @@ function DraggableItemIngredient(props) {
             handle=".handle"
             defaultPosition={{ x: 0, y: 0 }}
             position={{ x: 0, y: 0 }}
-            scale={1.5}
+            scale={2}
             onStart={handleOnStart}
             onStop={handleOnStop}
           >

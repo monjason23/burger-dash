@@ -1,11 +1,8 @@
 import React from "react";
 
-import { useSelector, shallowEqual } from "react-redux";
-import { useTransition, config, animated as a } from "react-spring";
-
 import styled from "styled-components";
 
-import GameBurger from "./game-components/GameBurger";
+import GameSlidingBurgers from "./game-components/GameBurger";
 import GameIngredients from "./game-components/GameIngredients";
 import GameOrder from "./game-components/GameOrder";
 import GameTimer from "./game-components/GameTimer";
@@ -36,14 +33,6 @@ const GameMainContainer = styled.div`
   }
 `;
 
-const GameBurgerSlideContainer = styled(a.div)`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  bottom: 0;
-`;
-
 function App() {
   return (
     <div className="App">
@@ -58,30 +47,6 @@ function App() {
       </GameMainContainer>
     </div>
   );
-}
-
-function GameSlidingBurgers() {
-  const burgerIndex = useSelector(
-    state => state.gameStatus.burgerIndex,
-    shallowEqual
-  );
-
-  const burgerTransition = useTransition(burgerIndex, item => item, {
-    config: config.wobbly,
-    from: { transform: "translateX(100%)" },
-    enter: { transform: "translateY(0%)" },
-    leave: { transform: "translateY(-100%)" }
-  });
-
-  function renderAnimatedBurgerList() {
-    return burgerTransition.map(({ props, key }) => (
-      <GameBurgerSlideContainer key={key} style={props}>
-        <GameBurger />
-      </GameBurgerSlideContainer>
-    ));
-  }
-
-  return <>{renderAnimatedBurgerList()}</>;
 }
 
 export default App;

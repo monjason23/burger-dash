@@ -1,13 +1,22 @@
 import React from "react";
+import styled from "styled-components";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
+import { useTransition, config, animated as a } from "react-spring";
 import { useDrop } from "react-dnd";
-import { useTransition, config } from "react-spring";
 
 import { serveBurger } from "./../actions";
 
 import Burger from "./../components/Burger";
 
-function GameBurger() {
+const GameBurgerSlideContainer = styled(a.div)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+`;
+
+function AnimatedBurger() {
   const dispatch = useDispatch();
   const burgers = useSelector(state => state.gameStatus.burgers, shallowEqual);
   const ordersComplete = useSelector(
@@ -22,7 +31,7 @@ function GameBurger() {
 
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: "BurgerIngredient",
-    drop: () => ({ name: "Dustbin" }),
+    drop: () => ({ name: "Burger" }),
     collect: monitor => ({
       isOver: monitor.isOver(),
       canDrop: monitor.canDrop()
@@ -84,6 +93,30 @@ function GameBurger() {
       </Burger.Container>
     </>
   );
+}
+
+function GameBurger() {
+  const burgerIndex = useSelector(
+    state => state.gameStatus.burgerIndex,
+    shallowEqual
+  );
+
+  const burgerTransition = useTransition(burgerIndex, item => item, {
+    config: config.wobbly,
+    from: { transform: "translateX(100%)" },
+    enter: { transform: "translateY(0%)" },
+    leave: { transform: "translateY(-100%)" }
+  });
+
+  function renderAnimatedBurgerList() {
+    return burgerTransition.map(({ props, key }) => (
+      <GameBurgerSlideContainer key={key} style={props}>
+        <AnimatedBurger />
+      </GameBurgerSlideContainer>
+    ));
+  }
+
+  return <>{renderAnimatedBurgerList()}</>;
 }
 
 export default GameBurger;

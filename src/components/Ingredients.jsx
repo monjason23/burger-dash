@@ -32,6 +32,10 @@ const Item = styled(a.div)`
   width: 64px;
   border-radius: 8px;
   padding: 8px;
+
+  img {
+    will-change: transform;
+  }
 `;
 
 export default { Container, Item };

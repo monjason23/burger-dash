@@ -20,6 +20,7 @@ const ItemWrapper = styled(a.div)`
   color: #000;
   position: relative;
   overflow: visible;
+  will-change: transform, height, opacity;
 `;
 
 const ItemContent = styled(a.div)`
