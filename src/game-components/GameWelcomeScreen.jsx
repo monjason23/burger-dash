@@ -47,7 +47,7 @@ function GameWelcomeScreen(props) {
         </h2>
         <p>
           This game is still under development.
-          <br /> Please don't share to anyone yet. Thanks!
+          <br /> Please don't share to anyone yet. Thanks! v1.0.1-alpha
         </p>
         <button onClick={handleOnClick}>Start game</button>
       </div>
