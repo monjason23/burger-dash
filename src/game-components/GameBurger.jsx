@@ -74,7 +74,7 @@ function AnimatedBurger() {
           ...props
         }}
       >
-        <img src={require(`../img/${item.name}.svg`)} alt={item.name} />
+        <img src={require(`../img/${item.name}.png`)} alt={item.name} />
       </Burger.Ingredient>
     ));
   }
