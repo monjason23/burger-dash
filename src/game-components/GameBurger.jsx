@@ -79,13 +79,15 @@ function AnimatedBurger() {
     ));
   }
 
+  function serveBurgerCallback(res) {
+    if (res) {
+      playAudio();
+    }
+  }
+
   function handleOnClick() {
     if (!ordersComplete) return;
-    dispatch(serveBurger()).then(res => {
-      if (res) {
-        playAudio();
-      }
-    });
+    dispatch(serveBurger(serveBurgerCallback));
   }
 
   return (

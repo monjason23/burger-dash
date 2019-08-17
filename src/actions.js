@@ -1,7 +1,7 @@
 import rnd from "randomstring";
 import gameConstants from "./constants";
 
-export function updateBurgerContent(payload) {
+export function updateBurgerContent(payload, cb) {
   return (dispatch, getState) => {
     let payloadWithKey = {
       key: rnd.generate(8),
@@ -12,55 +12,50 @@ export function updateBurgerContent(payload) {
       i => i.name === payload.name
     );
 
-    return new Promise(res => {
-      if (index === -1) {
-        dispatch({ type: gameConstants.UPDATE_LIVES });
-        dispatch({ type: gameConstants.UPDATE_EXACTORDER, payload: false });
-        res(false);
-        return;
-      }
+    if (index === -1) {
+      dispatch({ type: gameConstants.UPDATE_LIVES });
+      dispatch({ type: gameConstants.UPDATE_EXACTORDER, payload: false });
+      cb && cb(false);
+      return;
+    }
 
-      dispatch({
-        type: gameConstants.ADD_INGREDIENT_BURGER,
-        payload: payloadWithKey
-      });
-
-      dispatch({ type: gameConstants.UPDATE_ORDERS });
-      res(true);
+    dispatch({
+      type: gameConstants.ADD_INGREDIENT_BURGER,
+      payload: payloadWithKey
     });
+
+    dispatch({ type: gameConstants.UPDATE_ORDERS });
+
+    cb && cb(true);
   };
 }
 
-export function serveBurger() {
+export function serveBurger(cb) {
   return (dispatch, getState) => {
     let { orders, exactOrder, time, lives, winStreak } = getState().gameStatus;
 
-    return new Promise((res, rej) => {
-      if (orders.length > 0) {
-        rej(false);
-      }
+    if (orders.length > 0) {
+      cb && cb(false);
+    } else cb && cb(true);
 
-      res(true);
+    dispatch({
+      type: gameConstants.SERVE_BURGER
+    });
 
+    if (time > 0 && lives > 0 && orders.length === 0) {
       dispatch({
-        type: gameConstants.SERVE_BURGER
+        type: gameConstants.UPDATE_WINSTREAK,
+        payload: exactOrder
       });
 
-      if (time > 0 && lives > 0 && orders.length === 0) {
-        dispatch({
-          type: gameConstants.UPDATE_WINSTREAK,
-          payload: exactOrder
-        });
+      console.log("SCORE TO ADD", winStreak * (exactOrder ? 10 : 5));
 
-        console.log("SCORE TO ADD", winStreak * (exactOrder ? 10 : 5));
+      dispatch({
+        type: gameConstants.UPDATE_SCORE,
+        payload: winStreak * (exactOrder ? 10 : 5)
+      });
 
-        dispatch({
-          type: gameConstants.UPDATE_SCORE,
-          payload: winStreak * (exactOrder ? 10 : 5)
-        });
-
-        dispatch({ type: gameConstants.UPDATE_EXACTORDER, payload: true });
-      }
-    });
+      dispatch({ type: gameConstants.UPDATE_EXACTORDER, payload: true });
+    }
   };
 }

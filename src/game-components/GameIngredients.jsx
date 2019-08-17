@@ -74,16 +74,18 @@ function DraggableItemIngredient(props) {
       }
 
       if (item && monitor.getDropResult()) {
-        dispatch(updateBurgerContent(props.data)).then(res => {
-          if (res) playAudio();
-          else playErrorAudio();
-        });
+        dispatch(updateBurgerContent(props.data, updateBurgerContentCallback));
       }
     },
     collect: monitor => ({
       isDragging: monitor.isDragging()
     })
   });
+
+  function updateBurgerContentCallback(res) {
+    if (res) playAudio();
+    else playErrorAudio();
+  }
 
   function handleOnStart(e) {
     e.preventDefault();
