@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styled from "styled-components";
 
@@ -9,6 +9,8 @@ import GameTimer from "./game-components/GameTimer";
 import GameScore from "./game-components/GameScore";
 import GameLives from "./game-components/GameLives";
 import GameStars from "./game-components/GameStars";
+
+import GameWelcomeScreen from "./game-components/GameWelcomeScreen";
 
 import { device } from "./constants";
 
@@ -31,19 +33,42 @@ const GameMainContainer = styled.div`
     max-width: 640px;
     max-height: 640px;
   }
+
+  img.bg {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
 `;
 
 function App() {
+  const [start, setStart] = useState(false);
+
+  function startGame() {
+    setStart(true);
+  }
+
   return (
     <div className="App">
       <GameMainContainer>
-        <GameStars />
-        <GameLives />
-        <GameScore />
-        <GameTimer />
-        <GameOrder />
-        <GameBurger />
-        <GameIngredients />
+        {!start ? (
+          <GameWelcomeScreen onStart={startGame} />
+        ) : (
+          <>
+            <GameStars />
+            <GameLives />
+            <GameScore />
+            <GameTimer />
+            <GameOrder />
+            <GameBurger />
+            <GameIngredients />
+          </>
+        )}
+
+        <img className="bg" src={require("./img/bg.png")} />
       </GameMainContainer>
     </div>
   );

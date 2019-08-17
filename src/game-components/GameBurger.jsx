@@ -5,6 +5,8 @@ import { useTransition, config, animated as a } from "react-spring";
 import { useDrop } from "react-dnd";
 
 import { serveBurger } from "./../actions";
+import useAudio from "./GameAudio";
+import Bell from "./../audio/bell.mp3";
 
 import Burger from "./../components/Burger";
 
@@ -14,6 +16,7 @@ const GameBurgerSlideContainer = styled(a.div)`
   left: 0;
   bottom: 0;
   will-change: transform;
+  z-index: 10;
 `;
 
 function AnimatedBurger() {
@@ -29,14 +32,15 @@ function AnimatedBurger() {
     shallowEqual
   );
 
-  const [{ canDrop, isOver }, drop] = useDrop({
+  const [{ canDrop }, drop] = useDrop({
     accept: "BurgerIngredient",
     drop: () => ({ name: "Burger" }),
     collect: monitor => ({
-      isOver: monitor.isOver(),
       canDrop: monitor.canDrop()
     })
   });
+
+  const [playing, { playAudio }] = useAudio(Bell);
 
   const ingredientTransition = useTransition(
     burgers[burgerIndex].ingredients,
@@ -77,14 +81,18 @@ function AnimatedBurger() {
 
   function handleOnClick() {
     if (!ordersComplete) return;
-    dispatch(serveBurger());
+    dispatch(serveBurger()).then(res => {
+      if (res) {
+        playAudio();
+      }
+    });
   }
 
   return (
     <>
       <Burger.Container
         ref={drop}
-        dragStatus={{ isOver, canDrop }}
+        dragStatus={{ canDrop }}
         onClick={handleOnClick}
       >
         <Burger.IngredientsList>

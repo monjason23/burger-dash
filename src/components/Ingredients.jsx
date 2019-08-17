@@ -18,7 +18,7 @@ const Container = styled.div`
   bottom: 0px;
   width: 100%;
   max-width: max-content;
-
+  z-index: 11;
   flex-wrap: wrap;
   justify-content: center;
 
@@ -35,6 +35,7 @@ const Item = styled(a.div)`
 
   img {
     will-change: transform;
+    width: 100%;
   }
 `;
 

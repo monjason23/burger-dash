@@ -53,3 +53,21 @@ img.draggable.zoom {
   transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   transform: scale(5);
 }
+
+img.bg {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+}
+
+button {
+  background-color: #aa1505;
+  padding: 8px;
+  font-size: 14px;
+  color: #fff;
+  border: 0px;
+  border-radius: 8px;
+  font-weight: bold;
+}

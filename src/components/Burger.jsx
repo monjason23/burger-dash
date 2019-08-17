@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import { animated as a } from "react-spring";
 
-import BottomBun from "./../img/BottomBun.svg";
-import TopBun from "./../img/TopBun.svg";
+import BottomBun from "./../img/BottomBun.png";
+import TopBun from "./../img/TopBun.png";
 import Plate from "./../img/Plate.png";
 
 import { device } from "./../constants";
@@ -20,6 +20,7 @@ const BurgerContainer = styled(a.div)`
   flex-direction: column;
   align-items: center;
   cursor: pointer;
+
   -webkit-tap-highlight-color: transparent;
 
   @media ${device.tablet} {
@@ -129,7 +130,7 @@ const TopBunContainer = styled(a.div)`
   will-change: transform;
 
   transform: rotate(0deg) translateY(0px);
-  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
   &.animate {
     transform: rotate(-20deg) translateY(-150px);
@@ -139,6 +140,10 @@ const TopBunContainer = styled(a.div)`
     width: 300px;
     top: 105px;
   }
+
+  img {
+    width: 100%;
+  }
 `;
 
 const BottomBunContainer = styled(TopBunContainer)`
@@ -146,7 +151,7 @@ const BottomBunContainer = styled(TopBunContainer)`
   z-index: 2;
 
   transform: scale(1) translateY(0px);
-  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
   &.animate {
     transform: scale(1.1) translateY(-10px);
@@ -175,7 +180,7 @@ const PlateContainer = styled(a.div)`
 
 const IngredientsContainer = styled.div`
   transform: scale(1) translateY(0px);
-  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   z-index: 3;
 
   will-change: transform;
@@ -186,7 +191,7 @@ const IngredientsContainer = styled.div`
 `;
 
 const Container = React.forwardRef((props, ref) => {
-  const isDroppable = props.dragStatus.canDrop && props.dragStatus.isOver;
+  const isDroppable = props.dragStatus.canDrop;
 
   function onClick(e) {
     e.preventDefault();

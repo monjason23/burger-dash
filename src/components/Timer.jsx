@@ -11,6 +11,7 @@ const Container = styled(a.div)`
   text-align: center;
   top: 48px;
   right: 8px;
+  z-index: 10;
   background: linear-gradient(
     to bottom,
     rgba(255, 158, 0, 1) 0%,

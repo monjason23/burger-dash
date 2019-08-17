@@ -12,7 +12,7 @@ const Container = styled(a.div)`
   flex-direction: column;
   top: 48px;
   left: 8px;
-
+  z-index: 10;
   @media ${device.mobileL} {
     left: 16px;
     width: 180px;
@@ -44,6 +44,10 @@ const Label = styled.div``;
 const Image = styled.div`
   width: 30px;
   margin-right: 8px;
+
+  img {
+    width: 100%;
+  }
 `;
 
 const Count = styled.div`

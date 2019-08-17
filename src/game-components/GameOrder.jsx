@@ -24,7 +24,7 @@ function GameOrder() {
       return (
         <Order.Item key={key} style={props} count={item.count}>
           <Order.Image>
-            <img src={require(`./../img/${item.name}.svg`)} alt={item.name} />
+            <img src={require(`./../img/${item.name}.png`)} alt={item.name} />
           </Order.Image>
           <Order.Label>{item.name}</Order.Label>
           <Order.Count>

@@ -12,7 +12,7 @@ function GameScore() {
   );
 
   const animatedScore = useSpring({ value: score, from: { value: 0 } });
-
+  console.log("Win streak", winStreak);
   return (
     <>
       <Score.Container>
@@ -21,7 +21,6 @@ function GameScore() {
           {animatedScore.value.interpolate(x => x.toFixed(0))}
         </Score.Value>
       </Score.Container>
-      <div>{winStreak}</div>
     </>
   );
 }

@@ -7,6 +7,8 @@ import useWindowSize from "react-use-window-size";
 import Draggable from "react-draggable";
 
 import { updateBurgerContent } from "./../actions";
+import useAudio from "./GameAudio";
+import Pop from "./../audio/pop.mp3";
 
 import Ingredients from "./../components/Ingredients";
 
@@ -59,13 +61,10 @@ function GameIngredients() {
 
 function DraggableItemIngredient(props) {
   const [dragging, setDragging] = useState(false);
-  // const dragProp = useSpring({
-  //   config: config.wobbly,
-  //   transform: dragging ? "scale(5)" : "scale(1)"
-  // });
+  const [playing, { playAudio, playErrorAudio }] = useAudio(Pop);
 
   const dispatch = useDispatch();
-  const imgSrc = require(`./../img/${props.data.name}.svg`);
+  const imgSrc = require(`./../img/${props.data.name}.png`);
 
   const [{ isDragging }, drag, preview] = useDrag({
     item: { type: "BurgerIngredient" },
@@ -75,7 +74,10 @@ function DraggableItemIngredient(props) {
       }
 
       if (item && monitor.getDropResult()) {
-        dispatch(updateBurgerContent(props.data));
+        dispatch(updateBurgerContent(props.data)).then(res => {
+          if (res) playAudio();
+          else playErrorAudio();
+        });
       }
     },
     collect: monitor => ({

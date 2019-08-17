@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
+
 import * as serviceWorker from "./serviceWorker";
 
 import { createStore, applyMiddleware } from "redux";
@@ -14,14 +13,52 @@ import { isMobile } from "react-device-detect";
 import HTML5Backend from "react-dnd-html5-backend";
 import TouchBackend from "react-dnd-touch-backend";
 
+//Images
+import BottomBun from "./img/BottomBun.png";
+import TopBun from "./img/TopBun.png";
+import Cheese from "./img/Cheese.png";
+import Lettuce from "./img/Lettuce.png";
+import Patty from "./img/Patty.png";
+import Pickles from "./img/Pickles.png";
+import Tomato from "./img/Tomato.png";
+import Bacon from "./img/Bacon.png";
+import Plate from "./img/Plate.png";
+import Star from "./img/Star.png";
+import Flash from "./img/Flash.png";
+import Bg from "./img/bg.png";
+
+import "./index.css";
+import App from "./App";
+
 import rootReducer from "./reducer";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
+const Preload = require("react-preload").Preload;
 
 ReactDOM.render(
   <Provider store={store}>
     <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-      <App />
+      <Preload
+        images={[
+          BottomBun,
+          TopBun,
+          Cheese,
+          Lettuce,
+          Patty,
+          Pickles,
+          Tomato,
+          Bacon,
+          Plate,
+          Star,
+          Flash,
+          Bg
+        ]}
+        loadingIndicator={<div>Loading..</div>}
+        resolveOnError={true}
+        mountChildren={true}
+      >
+        <App />
+      </Preload>
     </DndProvider>
   </Provider>,
   document.getElementById("root")
