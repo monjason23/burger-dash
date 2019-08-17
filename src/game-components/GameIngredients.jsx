@@ -69,10 +69,6 @@ function DraggableItemIngredient(props) {
   const [{ isDragging }, drag, preview] = useDrag({
     item: { type: "BurgerIngredient" },
     end: (item, monitor) => {
-      if (isDragging) {
-        console.log("Dragging");
-      }
-
       if (item && monitor.getDropResult()) {
         dispatch(updateBurgerContent(props.data, updateBurgerContentCallback));
       }
@@ -103,20 +99,19 @@ function DraggableItemIngredient(props) {
         <>
           <Draggable
             handle=".handle"
-            defaultPosition={{ x: 0, y: 0 }}
+            defaultPosition={{ x: 300, y: 300 }}
             position={{ x: 0, y: 0 }}
-            scale={2}
+            scale={1}
             onStart={handleOnStart}
             onStop={handleOnStop}
           >
-            <div>
+            <Ingredients.ItemMobileDragHandler className="handle" ref={drag}>
               <img
-                className={`handle draggable${dragging ? " zoom" : ""}`}
-                ref={drag}
+                className={`${dragging ? "zoom" : ""}`}
                 src={imgSrc}
                 alt={props.data.name}
               />
-            </div>
+            </Ingredients.ItemMobileDragHandler>
           </Draggable>
         </>
       );

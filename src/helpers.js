@@ -32,39 +32,29 @@ const helpers = {
     return currentOrders;
   },
 
+  absorbEvent: function(e) {
+    e.preventDefault && e.preventDefault();
+    e.stopPropagation && e.stopPropagation();
+    e.cancelBubble = true;
+    e.returnValue = false;
+    return false;
+  },
+
+  preventLongPress: function() {
+    return {
+      onTouchStart: this.absorbEvent,
+      onTouchMove: this.absorbEvent,
+      onTouchEnd: this.absorbEvent,
+      onTouchCancel: this.absorbEvent
+    };
+  },
+
   setNumberOfOrders: function(time) {
     if (time >= 40) {
       return 2;
     } else if (time >= 20 && time < 40) {
       return 4;
     } else return 6;
-  },
-
-  preventDoubleTapZoom: function(event) {
-    console.log("WOW");
-    // Exit early if this involves more than one finger (e.g. pinch to zoom)
-    if (event.touches.length > 1) {
-      return;
-    }
-
-    const tapAt = new Date().getTime();
-    const timeDiff = tapAt - lastTapAt;
-    const { clientX, clientY } = event.touches[0];
-    const xDiff = Math.abs(lastClientX - clientX);
-    const yDiff = Math.abs(lastClientY - clientY);
-    if (
-      xDiff < minZoomTouchDelta &&
-      yDiff < minZoomTouchDelta &&
-      event.touches.length === 1 &&
-      timeDiff < delay
-    ) {
-      event.preventDefault();
-      // Trigger a fake click for the tap we just prevented
-      event.target.click();
-    }
-    lastClientX = clientX;
-    lastClientY = clientY;
-    lastTapAt = tapAt;
   }
 };
 

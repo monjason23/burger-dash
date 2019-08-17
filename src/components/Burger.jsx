@@ -178,6 +178,15 @@ const PlateContainer = styled(a.div)`
   }
 `;
 
+const SliderContainer = styled(a.div)`
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  will-change: transform;
+  z-index: 10;
+`;
+
 const IngredientsContainer = styled.div`
   transform: scale(1) translateY(0px);
   transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -217,4 +226,4 @@ const Container = React.forwardRef((props, ref) => {
   );
 });
 
-export default { Container, IngredientsList, Ingredient };
+export default { Container, IngredientsList, Ingredient, SliderContainer };

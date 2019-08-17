@@ -9,6 +9,7 @@ import GameTimer from "./game-components/GameTimer";
 import GameScore from "./game-components/GameScore";
 import GameLives from "./game-components/GameLives";
 import GameStars from "./game-components/GameStars";
+import GameDroppableArea from "./game-components/GameDroppableArea";
 
 import GameWelcomeScreen from "./game-components/GameWelcomeScreen";
 
@@ -41,6 +42,7 @@ const GameMainContainer = styled.div`
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
+    min-width: 500px;
   }
 `;
 
@@ -58,6 +60,7 @@ function App() {
           <GameWelcomeScreen onStart={startGame} />
         ) : (
           <>
+            <GameDroppableArea />
             <GameStars />
             <GameLives />
             <GameScore />

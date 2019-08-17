@@ -54,14 +54,6 @@ img.draggable.zoom {
   transform: scale(5);
 }
 
-img.bg {
-  position: absolute;
-  width: 100%;
-  top: 0px;
-  left: 0px;
-  z-index: 0;
-}
-
 button {
   background-color: #aa1505;
   padding: 8px;

@@ -1,46 +1,24 @@
 import React from "react";
-import styled from "styled-components";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { useTransition, config, animated as a } from "react-spring";
+import { useSelector, shallowEqual } from "react-redux";
+import { useTransition, config } from "react-spring";
 import { useDrop } from "react-dnd";
-
-import { serveBurger } from "./../actions";
-import useAudio from "./GameAudio";
-import Bell from "./../audio/bell.mp3";
 
 import Burger from "./../components/Burger";
 
-const GameBurgerSlideContainer = styled(a.div)`
-  position: absolute;
-  width: 100%;
-  left: 0;
-  bottom: 0;
-  will-change: transform;
-  z-index: 10;
-`;
-
 function AnimatedBurger() {
-  const dispatch = useDispatch();
   const burgers = useSelector(state => state.gameStatus.burgers, shallowEqual);
-  const ordersComplete = useSelector(
-    state => state.gameStatus.orders.length === 0,
-    shallowEqual
-  );
 
   const burgerIndex = useSelector(
     state => state.gameStatus.burgerIndex,
     shallowEqual
   );
 
-  const [{ canDrop }, drop] = useDrop({
+  const [{ canDrop }] = useDrop({
     accept: "BurgerIngredient",
-    drop: () => ({ name: "Burger" }),
     collect: monitor => ({
       canDrop: monitor.canDrop()
     })
   });
-
-  const [playing, { playAudio }] = useAudio(Bell);
 
   const ingredientTransition = useTransition(
     burgers[burgerIndex].ingredients,
@@ -79,29 +57,12 @@ function AnimatedBurger() {
     ));
   }
 
-  function serveBurgerCallback(res) {
-    if (res) {
-      playAudio();
-    }
-  }
-
-  function handleOnClick() {
-    if (!ordersComplete) return;
-    dispatch(serveBurger(serveBurgerCallback));
-  }
-
   return (
-    <>
-      <Burger.Container
-        ref={drop}
-        dragStatus={{ canDrop }}
-        onClick={handleOnClick}
-      >
-        <Burger.IngredientsList>
-          {renderAnimatedBurgerIngredients()}
-        </Burger.IngredientsList>
-      </Burger.Container>
-    </>
+    <Burger.Container dragStatus={{ canDrop }}>
+      <Burger.IngredientsList>
+        {renderAnimatedBurgerIngredients()}
+      </Burger.IngredientsList>
+    </Burger.Container>
   );
 }
 
@@ -120,9 +81,9 @@ function GameBurger() {
 
   function renderAnimatedBurgerList() {
     return burgerTransition.map(({ props, key }) => (
-      <GameBurgerSlideContainer key={key} style={props}>
+      <Burger.SliderContainer key={key} style={props}>
         <AnimatedBurger />
-      </GameBurgerSlideContainer>
+      </Burger.SliderContainer>
     ));
   }
 

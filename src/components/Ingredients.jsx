@@ -29,14 +29,31 @@ const Container = styled.div`
 
 const Item = styled(a.div)`
   position: relative;
-  width: 64px;
-  border-radius: 8px;
-  padding: 8px;
+  width: 72px;
 
   img {
     will-change: transform;
     width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
   }
 `;
 
-export default { Container, Item };
+const ItemMobileDragHandler = styled.div`
+  position: relative;
+  will-change: transform;
+
+  img {
+    transform: scale(1);
+    will-change: transform;
+    pointer-events: none;
+
+    &.zoom {
+      transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform: scale(6);
+      pointer-events: none;
+    }
+  }
+`;
+
+export default { Container, Item, ItemMobileDragHandler };
