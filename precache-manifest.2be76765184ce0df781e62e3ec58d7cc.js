@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f3150478b31460f20275b3a900093daa",
+    "revision": "a79b30cd036e4e25f4ba18d977881818",
     "url": "/burger-dash/index.html"
   },
   {
-    "revision": "3c59ae3adabf304163f6",
+    "revision": "5f0d6c6cfd202640ee03",
     "url": "/burger-dash/static/css/main.fda8f4e3.chunk.css"
   },
   {
-    "revision": "36797594a650bd62f8c4",
-    "url": "/burger-dash/static/js/2.00310c7b.chunk.js"
+    "revision": "669f584f0e65d91f806f",
+    "url": "/burger-dash/static/js/2.54130ab7.chunk.js"
   },
   {
-    "revision": "3c59ae3adabf304163f6",
-    "url": "/burger-dash/static/js/main.fc1f2bb4.chunk.js"
+    "revision": "5f0d6c6cfd202640ee03",
+    "url": "/burger-dash/static/js/main.f66031c8.chunk.js"
   },
   {
     "revision": "a1318d97235daa6de168",
@@ -72,11 +72,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/burger-dash/static/media/TopBun.4278df44.svg"
   },
   {
+    "revision": "d96f34a2817d1b634ed539496e6f080e",
+    "url": "/burger-dash/static/media/bell.d96f34a2.mp3"
+  },
+  {
     "revision": "53603f930019b47c0f697ba156d56d75",
     "url": "/burger-dash/static/media/pop.53603f93.mp3"
   },
   {
-    "revision": "1da69cdde671e7c43ef4ddb05cbc2515",
-    "url": "/burger-dash/static/media/woosh.1da69cdd.mp3"
+    "revision": "1740f61a287c29e49806f40e5b63b30d",
+    "url": "/burger-dash/static/media/wrong.1740f61a.mp3"
   }
 ]);
