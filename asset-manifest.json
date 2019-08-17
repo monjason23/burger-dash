@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/burger-dash/static/css/main.bf53e16a.chunk.css",
-    "main.js": "/burger-dash/static/js/main.dd7f5e25.chunk.js",
-    "main.js.map": "/burger-dash/static/js/main.dd7f5e25.chunk.js.map",
+    "main.js": "/burger-dash/static/js/main.b1329b08.chunk.js",
+    "main.js.map": "/burger-dash/static/js/main.b1329b08.chunk.js.map",
     "runtime~main.js": "/burger-dash/static/js/runtime~main.34290d06.js",
     "runtime~main.js.map": "/burger-dash/static/js/runtime~main.34290d06.js.map",
     "static/js/2.c56d0790.chunk.js": "/burger-dash/static/js/2.c56d0790.chunk.js",
     "static/js/2.c56d0790.chunk.js.map": "/burger-dash/static/js/2.c56d0790.chunk.js.map",
     "index.html": "/burger-dash/index.html",
-    "precache-manifest.c7903dea2b4177c37ddb83431bddb3e2.js": "/burger-dash/precache-manifest.c7903dea2b4177c37ddb83431bddb3e2.js",
+    "precache-manifest.a3f352c883b2f8460307b6bdeb3de76a.js": "/burger-dash/precache-manifest.a3f352c883b2f8460307b6bdeb3de76a.js",
     "service-worker.js": "/burger-dash/service-worker.js",
     "static/css/main.bf53e16a.chunk.css.map": "/burger-dash/static/css/main.bf53e16a.chunk.css.map",
     "static/media/Flash.png": "/burger-dash/static/media/Flash.65c1ab02.png",
