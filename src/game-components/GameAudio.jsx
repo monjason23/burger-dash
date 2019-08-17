@@ -12,11 +12,13 @@ function useAudio(url) {
 
   function playAudio() {
     let _audio = new Audio(url);
+    _audio.preload = "auto";
     _audio.play();
   }
 
   function playErrorAudio() {
     let _audio = new Audio(require("./../audio/wrong.mp3"));
+    _audio.preload = "auto";
     _audio.play();
   }
 
