@@ -1,15 +1,5 @@
 import _ from "lodash";
 
-// Ensure touches occur rapidly
-const delay = 500;
-// Sequential touches must be in close vicinity
-const minZoomTouchDelta = 10;
-
-// Track state of the last touch
-let lastTapAt = 0;
-let lastClientX = 0;
-let lastClientY = 0;
-
 const helpers = {
   randomNumber: function(min, max) {
     return Math.floor(Math.random() * max + min);

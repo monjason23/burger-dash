@@ -40,13 +40,13 @@ const gameStatus = (state = gameInitialStatus, action) => {
     case gameConstants.SERVE_BURGER: {
       return update(state, {
         burgers: { $push: [{ ingredients: [] }] },
-        burgerIndex: { $set: ++state.burgerIndex },
-        orders: {
-          $set: helpers.randomizeOrder(
-            helpers.setNumberOfOrders(state.time),
-            IngredientsArray
-          )
-        }
+        burgerIndex: { $set: ++state.burgerIndex }
+        // orders: {
+        //   $set: helpers.randomizeOrder(
+        //     helpers.setNumberOfOrders(state.time),
+        //     IngredientsArray
+        //   )
+        // }
       });
     }
 

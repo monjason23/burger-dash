@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
@@ -10,8 +10,12 @@ import GameScore from "./game-components/GameScore";
 import GameLives from "./game-components/GameLives";
 import GameStars from "./game-components/GameStars";
 import GameDroppableArea from "./game-components/GameDroppableArea";
-
 import GameWelcomeScreen from "./game-components/GameWelcomeScreen";
+import GameModalTimesUp from "./game-components/GameModalTimesUp";
+import GameModalNoLife from "./game-components/GameModalNoLife";
+
+import useAudio from "./hooks/useAudio";
+import BackgroundMusic from "./audio/bg.mp3";
 
 import { device } from "./constants";
 
@@ -49,17 +53,48 @@ const GameMainContainer = styled.div`
 function App() {
   const [start, setStart] = useState(false);
 
-  function startGame() {
-    setStart(true);
+  const [playing, { toggle }] = useAudio(BackgroundMusic, {
+    loop: true
+  });
+
+  function handleGame(bool) {
+    return function() {
+      setStart(bool);
+      toggle();
+    };
   }
+
+  function onBlur() {
+    if (playing) {
+      toggle();
+    }
+  }
+
+  function onFocus() {
+    if (!playing && start) {
+      toggle();
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("blur", onBlur);
+    window.addEventListener("focus", onFocus);
+
+    return () => {
+      window.removeEventListener("blur", onBlur);
+      window.removeEventListener("focus", onFocus);
+    };
+  }, [start, playing]);
 
   return (
     <div className="App">
       <GameMainContainer>
         {!start ? (
-          <GameWelcomeScreen onStart={startGame} />
+          <GameWelcomeScreen onStart={handleGame(true)} />
         ) : (
           <>
+            <GameModalTimesUp onExit={handleGame(false)} />
+            <GameModalNoLife onExit={handleGame(false)} />
             <GameDroppableArea />
             <GameStars />
             <GameLives />

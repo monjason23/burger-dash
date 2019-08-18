@@ -202,13 +202,8 @@ const IngredientsContainer = styled.div`
 const Container = React.forwardRef((props, ref) => {
   const isDroppable = props.dragStatus.canDrop;
 
-  function onClick(e) {
-    e.preventDefault();
-    props.onClick();
-  }
-
   return (
-    <BurgerContainer ref={ref} onClick={onClick}>
+    <BurgerContainer ref={ref}>
       <TopBunContainer className={`${isDroppable ? " animate" : ""}`}>
         <img src={TopBun} alt="Top Bun" />
       </TopBunContainer>

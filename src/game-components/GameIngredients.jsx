@@ -7,7 +7,7 @@ import useWindowSize from "react-use-window-size";
 import Draggable from "react-draggable";
 
 import { updateBurgerContent } from "./../actions";
-import useAudio from "./GameAudio";
+import useAudio from "./../hooks/useAudio";
 import Pop from "./../audio/pop.mp3";
 
 import Ingredients from "./../components/Ingredients";
@@ -98,14 +98,13 @@ function DraggableItemIngredient(props) {
       return (
         <>
           <Draggable
-            handle=".handle"
             defaultPosition={{ x: 300, y: 300 }}
             position={{ x: 0, y: 0 }}
             scale={1}
             onStart={handleOnStart}
             onStop={handleOnStop}
           >
-            <Ingredients.ItemMobileDragHandler className="handle" ref={drag}>
+            <Ingredients.ItemMobileDragHandler ref={drag}>
               <img
                 className={`${dragging ? "zoom" : ""}`}
                 src={imgSrc}

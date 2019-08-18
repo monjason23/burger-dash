@@ -6,14 +6,14 @@ import styled from "styled-components";
 
 import { serveBurger } from "./../actions";
 import { device } from "./../constants";
-import useAudio from "./GameAudio";
+import useAudio from "./../hooks/useAudio";
 import Bell from "./../audio/bell.mp3";
 
 const DroppableContainer = styled.div`
   position: absolute;
   bottom: 140px;
   width: 220px;
-  height: 200px;
+  height: 500px;
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;

@@ -42,6 +42,12 @@ export function serveBurger(cb) {
       type: gameConstants.SERVE_BURGER
     });
 
+    setTimeout(() => {
+      dispatch({
+        type: gameConstants.RANDOMIZE_ORDERS
+      });
+    }, 500);
+
     if (time > 0 && lives > 0 && orders.length === 0) {
       dispatch({
         type: gameConstants.UPDATE_WINSTREAK,

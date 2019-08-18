@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: #6d6d6d;
 }
 
 .App-logo {
@@ -40,26 +41,4 @@ body,
   to {
     transform: rotate(360deg);
   }
-}
-
-/* Draggable image transition */
-
-img.draggable {
-  transform: scale(1);
-  will-change: transform;
-}
-
-img.draggable.zoom {
-  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  transform: scale(5);
-}
-
-button {
-  background-color: #aa1505;
-  padding: 8px;
-  font-size: 14px;
-  color: #fff;
-  border: 0px;
-  border-radius: 8px;
-  font-weight: bold;
 }

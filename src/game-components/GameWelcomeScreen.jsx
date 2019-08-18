@@ -2,10 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import { device } from "./../constants";
-
-import BackgroundMusic from "./../audio/bg.mp3";
 import Flash from "./../img/Flash.png";
-import useAudio from "./GameAudio";
+
+import Button from "./../components/Button";
 
 const Container = styled.div`
   position: absolute;
@@ -31,26 +30,34 @@ const Container = styled.div`
 `;
 
 function GameWelcomeScreen(props) {
-  const [playing, { playAudio }] = useAudio(BackgroundMusic);
-
   function handleOnClick() {
-    playAudio();
     props.onStart();
   }
+
+  console.log("Designed and Developed by: Mon Jason Fabico");
 
   return (
     <Container>
       <div>
         <img src={Flash} alt="Flash" />
-        <h2 style={{ margin: "0px" }}>
-          <strong>Welcome!</strong>
-        </h2>
+
+        <Button primary onClick={handleOnClick}>
+          Start game
+        </Button>
+        <br />
+        <strong style={{ fontSize: "11px" }}>v2.0.3-alpha</strong>
         <p>
-          This game is still under development.
-          <br /> Please don't share to anyone yet. Thanks! <br />
-          v1.0.2-alpha
+          <small>
+            <strong>Note: Game is still under development</strong>
+            <br />
+          </small>
+          <br />
+          <br />
+
+          <small style={{ fontSize: "11px" }}>
+            Designed and developed by: <br /> <strong>Mon Jason Fabico</strong>
+          </small>
         </p>
-        <button onClick={handleOnClick}>Start game</button>
       </div>
     </Container>
   );

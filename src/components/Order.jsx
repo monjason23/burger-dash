@@ -24,7 +24,6 @@ const ItemWrapper = styled(a.div)`
   height: 44px;
   box-sizing: border-box;
   border-radius: 8px;
-  color: #000;
   position: relative;
   overflow: visible;
   will-change: transform, height, opacity;
