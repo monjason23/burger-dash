@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/burger-dash/precache-manifest.40970e124540c1c08a44f632c4fc4022.js"
+  "/burger-dash/precache-manifest.06689de13eca727f51d324baea3fb7f8.js"
 );
 
 self.addEventListener('message', (event) => {
