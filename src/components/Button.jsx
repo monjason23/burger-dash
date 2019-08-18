@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 const Button = styled.button`
-  padding: ${props => (props.settings ? "8px" : "16px")};
+  padding: ${props => (props.settings ? "8px" : "12px")};
   border: 0px;
   font-weight: bold;
   font-size: 16px;
   color: ${props => (props.primary ? "#fff" : "inherit")};
   border-radius: 8px;
-  margin: 0px 4px;
+  margin: 4px;
 
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useSelector, shallowEqual } from "react-redux";
-import { useTransition } from "react-spring";
+import { useTransition, config } from "react-spring";
 
 import Lives from "./../components/Lives";
 
@@ -11,9 +11,10 @@ function GameLives() {
   const lives = useSelector(state => state.gameStatus.lives, shallowEqual);
 
   const heartTransition = useTransition(_.range(lives), item => item, {
-    from: { transform: "scale(1)", opacity: 1 },
+    config: config.wobbly,
+    from: { transform: "scale(0)", opacity: 1 },
     enter: { transform: "scale(1)", opacity: 1 },
-    leave: { transform: "scale(3)", opacity: 0 }
+    leave: { transform: "scale(0)", opacity: 0 }
   });
 
   function renderHearts() {

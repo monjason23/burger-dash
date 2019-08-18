@@ -9,34 +9,31 @@ import Timer from "./../components/Timer";
 
 function GameTimer() {
   const dispatch = useDispatch();
-  const [playing, { toggle, restartAudio }] = useAudio(Countdown);
+  const [playing, { playArgAudio, pauseArgAudio, restartAudio }] = useAudio(
+    Countdown
+  );
   const time = useSelector(state => state.gameStatus.time, shallowEqual);
   const lives = useSelector(state => state.gameStatus.lives, shallowEqual);
+  const paused = useSelector(state => state.gameStatus.paused, shallowEqual);
 
   useEffect(() => {
     let interval = null;
 
     if (!interval) {
       interval = setInterval(() => {
-        if (time > 0 && lives !== 0) {
+        if (time > 0 && lives !== 0 && !paused) {
+          if (time <= 7) playArgAudio();
           dispatch({ type: gameConstants.UPDATE_TIME, payload: time - 1 });
-        } else clearInterval(interval);
+        } else {
+          restartAudio();
+          pauseArgAudio();
+          clearInterval(interval);
+        }
       }, 1000);
     }
 
-    if (time <= 6) {
-      if (!playing) {
-        toggle();
-      }
-    }
-
-    if (time === 0) {
-      restartAudio();
-      toggle();
-    }
-
     return () => clearInterval(interval);
-  }, [time]);
+  }, [time, lives, paused]);
 
   return (
     <>

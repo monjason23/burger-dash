@@ -4,23 +4,33 @@ import { animated as a } from "react-spring";
 const Container = styled(a.div)`
   position: absolute;
   display: flex;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   flex-direction: row-reverse;
   right: 8px;
   top: 8px;
-  background-color: #fff;
+
   z-index: 10;
   padding: 2px 4px;
-  border-radius: 8px;
 `;
 
 const Heart = styled(a.div)`
   position: relative;
   transform-origin: center center;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin: 0px 8px;
+
   img {
-    margin: 0px 12px;
     box-sizing: border-box;
-    width: 24px;
+    width: 12px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 `;
 

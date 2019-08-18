@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
+import { useDispatch } from "react-redux";
+
 import GameBurger from "./game-components/GameBurger";
 import GameIngredients from "./game-components/GameIngredients";
 import GameOrder from "./game-components/GameOrder";
@@ -13,11 +15,12 @@ import GameDroppableArea from "./game-components/GameDroppableArea";
 import GameWelcomeScreen from "./game-components/GameWelcomeScreen";
 import GameModalTimesUp from "./game-components/GameModalTimesUp";
 import GameModalNoLife from "./game-components/GameModalNoLife";
+import GameModalSettings from "./game-components/GameModalSettings";
 
 import useAudio from "./hooks/useAudio";
 import BackgroundMusic from "./audio/bg.mp3";
 
-import { device } from "./constants";
+import gameConstants, { device } from "./constants";
 
 import "./App.css";
 
@@ -53,6 +56,8 @@ const GameMainContainer = styled.div`
 function App() {
   const [start, setStart] = useState(false);
 
+  const dispatch = useDispatch();
+
   const [playing, { toggle }] = useAudio(BackgroundMusic, {
     loop: true
   });
@@ -64,19 +69,29 @@ function App() {
     };
   }
 
-  function onBlur() {
-    if (playing) {
-      toggle();
-    }
-  }
-
-  function onFocus() {
-    if (!playing && start) {
-      toggle();
-    }
-  }
-
   useEffect(() => {
+    function onBlur() {
+      if (playing) {
+        toggle();
+      }
+
+      dispatch({
+        type: gameConstants.SET_PAUSE,
+        payload: true
+      });
+    }
+
+    function onFocus() {
+      if (!playing && start) {
+        toggle();
+      }
+
+      dispatch({
+        type: gameConstants.SET_PAUSE,
+        payload: false
+      });
+    }
+
     window.addEventListener("blur", onBlur);
     window.addEventListener("focus", onFocus);
 
@@ -84,7 +99,7 @@ function App() {
       window.removeEventListener("blur", onBlur);
       window.removeEventListener("focus", onFocus);
     };
-  }, [start, playing]);
+  }, [start, playing, toggle]);
 
   return (
     <div className="App">
@@ -95,6 +110,7 @@ function App() {
           <>
             <GameModalTimesUp onExit={handleGame(false)} />
             <GameModalNoLife onExit={handleGame(false)} />
+            <GameModalSettings onExit={handleGame(false)} />
             <GameDroppableArea />
             <GameStars />
             <GameLives />

@@ -45,7 +45,7 @@ const ScoreValue = styled.h1`
   color: #71b413;
 `;
 
-function Window({ children, show }) {
+function Window({ children, show, backdropOnClick }) {
   const AppContainer = document.querySelector(".App");
 
   const modalTransition = useTransition(show, null, {
@@ -54,6 +54,10 @@ function Window({ children, show }) {
     enter: { transform: "translate(-50%, -50%) scale(1)", opacity: 1 },
     leave: { transform: "translate(-50%, -50%) scale(0)", opacity: 0 }
   });
+
+  function handleBackdropOnClick() {
+    backdropOnClick && backdropOnClick();
+  }
 
   return ReactDOM.createPortal(
     <>
@@ -66,7 +70,7 @@ function Window({ children, show }) {
           )
         );
       })}
-      {show && <Backdrop />}
+      {show && <Backdrop onClick={handleBackdropOnClick} />}
     </>,
     AppContainer
   );

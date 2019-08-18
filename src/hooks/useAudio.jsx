@@ -34,11 +34,29 @@ function useAudio(url, opt) {
     _errorAudio.play();
   }
 
+  function playArgAudio() {
+    audio.play();
+  }
+
+  function pauseArgAudio() {
+    audio.pause();
+  }
+
   useEffect(() => {
     playing ? audio.play() : audio.pause();
-  }, [playing]);
+  }, [playing, audio]);
 
-  return [playing, { toggle, playAudio, playErrorAudio, restartAudio }];
+  return [
+    playing,
+    {
+      toggle,
+      playAudio,
+      playErrorAudio,
+      restartAudio,
+      playArgAudio,
+      pauseArgAudio
+    }
+  ];
 }
 
 export default useAudio;

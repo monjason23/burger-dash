@@ -8,9 +8,10 @@ const gameInitialStatus = {
   burgers: [{ ingredients: [] }],
   burgerIndex: 0,
   score: 0,
-  time: 60,
+  time: 8,
   lives: 3,
   exactOrder: true,
+  paused: false,
   winStreak: 1,
   orders: helpers.randomizeOrder(2, IngredientsArray)
 };
@@ -93,6 +94,18 @@ const gameStatus = (state = gameInitialStatus, action) => {
     case gameConstants.UPDATE_LIVES: {
       return update(state, {
         lives: { $set: state.lives > 0 ? state.lives - 1 : 0 }
+      });
+    }
+
+    case gameConstants.TOGGLE_PAUSE: {
+      return update(state, {
+        paused: { $set: !state.paused }
+      });
+    }
+
+    case gameConstants.SET_PAUSE: {
+      return update(state, {
+        paused: { $set: action.payload }
       });
     }
 

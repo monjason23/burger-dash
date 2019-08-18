@@ -5,7 +5,7 @@ import Button from "./../components/Button";
 
 import gameConstants from "./../constants";
 
-function GameModalTimesUp(props) {
+function GameModalNoLife(props) {
   const dispatch = useDispatch();
 
   const [showModal, setShowModal] = useState(false);
@@ -39,11 +39,13 @@ function GameModalTimesUp(props) {
       <h3>Your score is:</h3>
       <Modal.ScoreValue>{score}</Modal.ScoreValue>
       <Button primary onClick={handlePlayAgain}>
-        Play again!
+        <i className="fa fa-fw fa-play" /> Play again!
       </Button>
-      <Button onClick={handleExit}>Exit</Button>
+      <Button onClick={handleExit}>
+        <i className="fa fa-fw fa-sign-out" />
+      </Button>
     </Modal.Window>
   );
 }
 
-export default GameModalTimesUp;
+export default GameModalNoLife;
