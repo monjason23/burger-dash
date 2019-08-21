@@ -3,7 +3,7 @@ import { useSelector, shallowEqual } from "react-redux";
 import { useTransition, config } from "react-spring";
 import { useDrop } from "react-dnd";
 
-import Burger from "./../components/Burger";
+import Burger from "../components/Burger";
 
 function AnimatedBurger() {
   const burgers = useSelector(state => state.gameStatus.burgers, shallowEqual);

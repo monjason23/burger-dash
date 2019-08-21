@@ -21,9 +21,16 @@ function GameModalSetting(props) {
     dispatch({
       type: gameConstants.TOGGLE_PAUSE
     });
+
     dispatch({
-      type: gameConstants.RESTART
+      type: gameConstants.SET_LOADING
     });
+
+    setTimeout(() => {
+      dispatch({
+        type: gameConstants.RESTART
+      });
+    }, 100);
   }
   function handleExit() {
     props.onExit();

@@ -35,6 +35,8 @@ import rootReducer from "./reducer";
 const store = createStore(rootReducer, applyMiddleware(thunk));
 const Preload = require("react-preload").Preload;
 
+console.log("Designed and Developed by: Mon Jason Fabico");
+
 ReactDOM.render(
   <Provider store={store}>
     <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>

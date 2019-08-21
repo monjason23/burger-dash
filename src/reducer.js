@@ -8,8 +8,9 @@ const gameInitialStatus = {
   burgers: [{ ingredients: [] }],
   burgerIndex: 0,
   score: 0,
-  time: 8,
+  time: 60,
   lives: 3,
+  loading: false,
   exactOrder: true,
   paused: false,
   winStreak: 1,
@@ -42,12 +43,6 @@ const gameStatus = (state = gameInitialStatus, action) => {
       return update(state, {
         burgers: { $push: [{ ingredients: [] }] },
         burgerIndex: { $set: ++state.burgerIndex }
-        // orders: {
-        //   $set: helpers.randomizeOrder(
-        //     helpers.setNumberOfOrders(state.time),
-        //     IngredientsArray
-        //   )
-        // }
       });
     }
 
@@ -106,6 +101,12 @@ const gameStatus = (state = gameInitialStatus, action) => {
     case gameConstants.SET_PAUSE: {
       return update(state, {
         paused: { $set: action.payload }
+      });
+    }
+
+    case gameConstants.SET_LOADING: {
+      return update(state, {
+        loading: { $set: true }
       });
     }
 

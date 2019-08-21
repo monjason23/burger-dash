@@ -17,7 +17,8 @@ const gameConstants = {
   RUN_GAME: "RUN_GAME",
   PAUSE_GAME: "PAUSE_GAME",
   SET_PAUSE: "SET_PAUSE",
-  TOGGLE_PAUSE: "TOGGLE_PAUSE"
+  TOGGLE_PAUSE: "TOGGLE_PAUSE",
+  SET_LOADING: "SET_LOADING"
 };
 
 export const IngredientsArray = [

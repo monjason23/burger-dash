@@ -16,11 +16,14 @@ const Container = styled.div`
   background-color: #fff;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   img {
     width: 100%;
     padding: 16px;
     box-sizing: border-box;
+    display: inline-block;
+    max-width: 500px;
   }
 
   @media ${device.tablet} {
@@ -34,12 +37,11 @@ function GameWelcomeScreen(props) {
     props.onStart();
   }
 
-  console.log("Designed and Developed by: Mon Jason Fabico");
-
   return (
     <Container>
       <div>
         <img src={Flash} alt="Flash" />
+        <br />
 
         <Button primary onClick={handleOnClick}>
           Start game
@@ -51,7 +53,6 @@ function GameWelcomeScreen(props) {
             <strong>Note: Game is still under development</strong>
             <br />
           </small>
-          <br />
           <br />
 
           <small style={{ fontSize: "11px" }}>

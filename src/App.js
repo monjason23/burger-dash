@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
-import GameBurger from "./game-components/GameBurger";
-import GameIngredients from "./game-components/GameIngredients";
-import GameOrder from "./game-components/GameOrder";
-import GameTimer from "./game-components/GameTimer";
-import GameScore from "./game-components/GameScore";
-import GameLives from "./game-components/GameLives";
-import GameStars from "./game-components/GameStars";
-import GameDroppableArea from "./game-components/GameDroppableArea";
-import GameWelcomeScreen from "./game-components/GameWelcomeScreen";
-import GameModalTimesUp from "./game-components/GameModalTimesUp";
-import GameModalNoLife from "./game-components/GameModalNoLife";
-import GameModalSettings from "./game-components/GameModalSettings";
+import GameBurger from "./containers/GameBurger";
+import GameIngredients from "./containers/GameIngredients";
+import GameOrder from "./containers/GameOrder";
+import GameTimer from "./containers/GameTimer";
+import GameScore from "./containers/GameScore";
+import GameLives from "./containers/GameLives";
+import GameStars from "./containers/GameStars";
+import GameDroppableArea from "./containers/GameDroppableArea";
+import GameWelcomeScreen from "./containers/GameWelcomeScreen";
+import GameModalTimesUp from "./containers/GameModalTimesUp";
+import GameModalNoLife from "./containers/GameModalNoLife";
+import GameModalSettings from "./containers/GameModalSettings";
 
 import useAudio from "./hooks/useAudio";
 import BackgroundMusic from "./audio/bg.mp3";
@@ -31,6 +31,11 @@ const GameMainContainer = styled.div`
   border: 1px solid #eee;
   overflow: hidden;
   user-select: none;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 1) 0%,
@@ -61,6 +66,8 @@ function App() {
   const [playing, { toggle }] = useAudio(BackgroundMusic, {
     loop: true
   });
+
+  const loading = useSelector(state => state.gameStatus.loading, shallowEqual);
 
   function handleGame(bool) {
     return function() {
@@ -108,17 +115,21 @@ function App() {
           <GameWelcomeScreen onStart={handleGame(true)} />
         ) : (
           <>
-            <GameModalTimesUp onExit={handleGame(false)} />
-            <GameModalNoLife onExit={handleGame(false)} />
-            <GameModalSettings onExit={handleGame(false)} />
-            <GameDroppableArea />
-            <GameStars />
-            <GameLives />
-            <GameScore />
-            <GameTimer />
-            <GameOrder />
-            <GameBurger />
-            <GameIngredients />
+            {!loading && (
+              <>
+                <GameModalTimesUp onExit={handleGame(false)} />
+                <GameModalNoLife onExit={handleGame(false)} />
+                <GameModalSettings onExit={handleGame(false)} />
+                <GameDroppableArea />
+                <GameStars />
+                <GameLives />
+                <GameScore />
+                <GameTimer />
+                <GameOrder />
+                <GameBurger />
+                <GameIngredients />
+              </>
+            )}
           </>
         )}
 
