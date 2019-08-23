@@ -3,12 +3,6 @@
   color: #6d6d6d;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -34,7 +28,7 @@ body,
   position: fixed;
 }
 
-@keyframes App-logo-spin {
+@keyframes star-spin {
   from {
     transform: rotate(0deg);
   }

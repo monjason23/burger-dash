@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { FacebookShareButton } from "react-share";
 
 import { device } from "./../constants";
 import Flash from "./../img/Flash.png";
@@ -13,7 +14,6 @@ const Container = styled.div`
   overflow: hidden;
   user-select: none;
   z-index: 1000;
-  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,15 +46,17 @@ function GameWelcomeScreen(props) {
         <Button primary onClick={handleOnClick}>
           Start game
         </Button>
+        <FacebookShareButton
+          url={"https://monjason23.github.io/burger-dash/"}
+          quote={`Let's play Burger Dash!`}
+          style={{ display: "inline-block" }}
+        >
+          <Button social>
+            <i className="fa fa-fw fa-facebook-square" /> Share
+          </Button>
+        </FacebookShareButton>
         <br />
-        <strong style={{ fontSize: "11px" }}>v2.0.3-alpha</strong>
         <p>
-          <small>
-            <strong>Note: Game is still under development</strong>
-            <br />
-          </small>
-          <br />
-
           <small style={{ fontSize: "11px" }}>
             Designed and developed by: <br /> <strong>Mon Jason Fabico</strong>
           </small>

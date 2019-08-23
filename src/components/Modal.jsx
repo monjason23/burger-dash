@@ -45,6 +45,16 @@ const ScoreValue = styled.h1`
   color: #71b413;
 `;
 
+const AdditionalScore = styled.span`
+  position: absolute;
+  display: block;
+  font-size: 14px;
+  color: #71b413;
+  left: 0;
+  top: 175px;
+  width: 100%;
+`;
+
 function Window({ children, show, backdropOnClick }) {
   const AppContainer = document.querySelector(".App");
 
@@ -76,4 +86,4 @@ function Window({ children, show, backdropOnClick }) {
   );
 }
 
-export default { Window, Title, ScoreValue };
+export default { Window, Title, ScoreValue, AdditionalScore };

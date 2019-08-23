@@ -12,7 +12,7 @@ function GameScore() {
   );
 
   const animatedScore = useSpring({ value: score, from: { value: 0 } });
-  console.log("Win streak", winStreak);
+
   return (
     <>
       <Score.Container>

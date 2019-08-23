@@ -13,8 +13,7 @@ import GameLives from "./containers/GameLives";
 import GameStars from "./containers/GameStars";
 import GameDroppableArea from "./containers/GameDroppableArea";
 import GameWelcomeScreen from "./containers/GameWelcomeScreen";
-import GameModalTimesUp from "./containers/GameModalTimesUp";
-import GameModalNoLife from "./containers/GameModalNoLife";
+import GameModalResult from "./containers/GameModalResult";
 import GameModalSettings from "./containers/GameModalSettings";
 
 import useAudio from "./hooks/useAudio";
@@ -31,16 +30,10 @@ const GameMainContainer = styled.div`
   border: 1px solid #eee;
   overflow: hidden;
   user-select: none;
-
+  background-color: #fff;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(242, 242, 242, 1) 100%
-  );
 
   @media ${device.tablet} {
     max-width: 640px;
@@ -60,6 +53,7 @@ const GameMainContainer = styled.div`
 
 function App() {
   const [start, setStart] = useState(false);
+  const [blurred, setBlurred] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -78,26 +72,23 @@ function App() {
 
   useEffect(() => {
     function onBlur() {
+      setBlurred(true);
       if (playing) {
         toggle();
       }
-
-      dispatch({
-        type: gameConstants.SET_PAUSE,
-        payload: true
-      });
     }
 
     function onFocus() {
+      setBlurred(false);
       if (!playing && start) {
         toggle();
       }
-
-      dispatch({
-        type: gameConstants.SET_PAUSE,
-        payload: false
-      });
     }
+
+    dispatch({
+      type: gameConstants.SET_PAUSE,
+      payload: blurred
+    });
 
     window.addEventListener("blur", onBlur);
     window.addEventListener("focus", onFocus);
@@ -106,7 +97,7 @@ function App() {
       window.removeEventListener("blur", onBlur);
       window.removeEventListener("focus", onFocus);
     };
-  }, [start, playing, toggle]);
+  }, [start, playing, toggle, blurred]);
 
   return (
     <div className="App">
@@ -117,9 +108,11 @@ function App() {
           <>
             {!loading && (
               <>
-                <GameModalTimesUp onExit={handleGame(false)} />
-                <GameModalNoLife onExit={handleGame(false)} />
-                <GameModalSettings onExit={handleGame(false)} />
+                <GameModalResult onExit={handleGame(false)} />
+                <GameModalSettings
+                  onExit={handleGame(false)}
+                  isBlurred={blurred}
+                />
                 <GameDroppableArea />
                 <GameStars />
                 <GameLives />

@@ -18,8 +18,7 @@ const Star = styled(a.div)`
   img {
     width: 100px;
     will-change: transform;
-    animation: ${props =>
-      `App-logo-spin infinite ${props.duration || 5}s linear`};
+    animation: ${props => `star-spin infinite ${props.duration || 5}s linear`};
   }
 `;
 

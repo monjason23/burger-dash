@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import Modal from "./../components/Modal";
 import Button from "./../components/Button";
@@ -9,15 +9,13 @@ function GameModalSetting(props) {
   const dispatch = useDispatch();
   const paused = useSelector(state => state.gameStatus.paused, shallowEqual);
 
-  useEffect(() => {}, [paused]);
-
-  function handlePause() {
+  function handleTogglePause() {
     dispatch({
       type: gameConstants.TOGGLE_PAUSE
     });
   }
 
-  function handlePlayAgain() {
+  function handleRestart() {
     dispatch({
       type: gameConstants.TOGGLE_PAUSE
     });
@@ -44,21 +42,24 @@ function GameModalSetting(props) {
 
   return (
     <>
-      <Modal.Window show={paused} backdropOnClick={handlePause}>
+      <Modal.Window
+        show={paused && !props.isBlurred}
+        backdropOnClick={handleTogglePause}
+      >
         <Modal.Title>What would you like to do?</Modal.Title>
-        <Button primary onClick={handlePause}>
+        <Button primary onClick={handleTogglePause}>
           <i className="fa fa-fw fa-play" /> Resume
         </Button>
-        <Button onClick={handlePlayAgain}>
-          <i className="fa fa-fw fa-repeat" />
+        <Button onClick={handleRestart}>
+          <i className="fa fa-fw fa-repeat" /> Restart
         </Button>
         <Button onClick={handleExit}>
-          <i className="fa fa-fw fa-sign-out" />
+          <i className="fa fa-fw fa-sign-out" /> Exit
         </Button>
       </Modal.Window>
       <Button
         settings
-        onClick={handlePause}
+        onClick={handleTogglePause}
         style={{
           position: "absolute",
           zIndex: "15",
