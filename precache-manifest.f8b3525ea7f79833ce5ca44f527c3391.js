@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "095300163ada3596ca0e3fa585c4a105",
+    "revision": "30b59e586c893389e743e8f37326aef7",
     "url": "/burger-dash/index.html"
   },
   {
-    "revision": "c53e0b3defd3985a846f",
-    "url": "/burger-dash/static/css/main.570897d5.chunk.css"
+    "revision": "ae830b2ebc51e458b881",
+    "url": "/burger-dash/static/css/main.1377578f.chunk.css"
   },
   {
-    "revision": "80163fa1c2d4c1cd9be4",
-    "url": "/burger-dash/static/js/2.152d1112.chunk.js"
+    "revision": "a768506de2acbe0fc6c5",
+    "url": "/burger-dash/static/js/2.8b9da71d.chunk.js"
   },
   {
-    "revision": "c53e0b3defd3985a846f",
-    "url": "/burger-dash/static/js/main.fc51afff.chunk.js"
+    "revision": "ae830b2ebc51e458b881",
+    "url": "/burger-dash/static/js/main.ebbd1863.chunk.js"
   },
   {
     "revision": "a1318d97235daa6de168",
     "url": "/burger-dash/static/js/runtime~main.34290d06.js"
   },
   {
-    "revision": "65c1ab029e670031dbb102b7e4cb5283",
-    "url": "/burger-dash/static/media/Flash.65c1ab02.png"
+    "revision": "92fa483383bb4af5191a352fe36419e9",
+    "url": "/burger-dash/static/media/Flash.92fa4833.png"
   },
   {
     "revision": "ab952194d893d4358dc6fa0132b128cb",
