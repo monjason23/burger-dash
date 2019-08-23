@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "092a4c5079fbe9c5b8c85552c8677386",
+    "revision": "2625dd844831021dfc81ae33a47ea31d",
     "url": "/burger-dash/index.html"
   },
   {
