@@ -63,3 +63,12 @@ export function serveBurger(cb) {
     }
   };
 }
+
+export function restartGame() {
+  return dispatch => {
+    dispatch({ type: gameConstants.SET_LOADING });
+    setTimeout(() => {
+      dispatch({ type: gameConstants.RESTART });
+    }, 100);
+  };
+}

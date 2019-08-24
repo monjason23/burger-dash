@@ -3,6 +3,7 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { FacebookShareButton } from "react-share";
 import Modal from "./../components/Modal";
 import Button from "./../components/Button";
+import { restartGame } from "./../actions";
 
 import gameConstants from "./../constants";
 
@@ -25,9 +26,7 @@ function GameModalResult(props) {
 
   function handlePlayAgain() {
     setShowModal(false);
-    dispatch({
-      type: gameConstants.RESTART
-    });
+    dispatch(restartGame());
   }
   function handleExit() {
     props.onExit();

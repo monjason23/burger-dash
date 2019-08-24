@@ -8,7 +8,7 @@ const gameInitialStatus = {
   burgers: [{ ingredients: [] }],
   burgerIndex: 0,
   score: 0,
-  time: 60,
+  time: 10,
   lives: 3,
   loading: false,
   exactOrder: true,

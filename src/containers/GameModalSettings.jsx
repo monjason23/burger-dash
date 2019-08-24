@@ -4,6 +4,7 @@ import Modal from "./../components/Modal";
 import Button from "./../components/Button";
 
 import gameConstants from "./../constants";
+import { restartGame } from "./../actions";
 
 function GameModalSetting(props) {
   const dispatch = useDispatch();
@@ -16,28 +17,11 @@ function GameModalSetting(props) {
   }
 
   function handleRestart() {
-    dispatch({
-      type: gameConstants.TOGGLE_PAUSE
-    });
-
-    dispatch({
-      type: gameConstants.SET_LOADING
-    });
-
-    setTimeout(() => {
-      dispatch({
-        type: gameConstants.RESTART
-      });
-    }, 100);
+    dispatch(restartGame());
   }
   function handleExit() {
     props.onExit();
-    dispatch({
-      type: gameConstants.TOGGLE_PAUSE
-    });
-    dispatch({
-      type: gameConstants.RESTART
-    });
+    dispatch(restartGame());
   }
 
   return (
