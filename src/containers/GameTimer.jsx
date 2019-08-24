@@ -37,9 +37,9 @@ function GameTimer() {
 
   return (
     <>
-      <Timer.Container>
+      <Timer.Container className={time <= 7 ? "danger" : ""}>
         <Timer.Header>Remaining Time</Timer.Header>
-        <Timer.Value>
+        <Timer.Value className={time <= 7 && time !== 0 ? "pulse" : ""}>
           {time === 60 ? "1:00" : `0:${time < 10 ? `0${time}` : time}`}
         </Timer.Value>
       </Timer.Container>

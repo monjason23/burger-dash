@@ -28,6 +28,10 @@ body,
   position: fixed;
 }
 
+.disable-interaction {
+  pointer-events: none;
+}
+
 @keyframes star-spin {
   from {
     transform: rotate(0deg);

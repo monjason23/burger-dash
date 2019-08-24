@@ -67,6 +67,8 @@ function AnimatedBurger() {
 }
 
 function GameBurger() {
+  const droppableArea = document.querySelector(".droppable-area");
+
   const burgerIndex = useSelector(
     state => state.gameStatus.burgerIndex,
     shallowEqual
@@ -76,8 +78,20 @@ function GameBurger() {
     config: config.wobbly,
     from: { transform: "translateX(100%)" },
     enter: { transform: "translateY(0%)" },
-    leave: { transform: "translateY(-100%)" }
+    leave: { transform: "translateY(-100%)" },
+    onStart: onStart,
+    onDestroyed: onDestroyed
   });
+
+  function onStart() {
+    if (burgerIndex > 0) {
+      droppableArea.classList.add("disable-interaction");
+    }
+  }
+
+  function onDestroyed() {
+    droppableArea.classList.remove("disable-interaction");
+  }
 
   function renderAnimatedBurgerList() {
     return burgerTransition.map(({ props, key }) => (

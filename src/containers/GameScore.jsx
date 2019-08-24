@@ -6,11 +6,6 @@ import Score from "./../components/Score";
 
 function GameScore() {
   const score = useSelector(state => state.gameStatus.score, shallowEqual);
-  const winStreak = useSelector(
-    state => state.gameStatus.winStreak,
-    shallowEqual
-  );
-
   const animatedScore = useSpring({ value: score, from: { value: 0 } });
 
   return (
