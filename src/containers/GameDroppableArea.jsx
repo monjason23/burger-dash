@@ -6,8 +6,7 @@ import styled from "styled-components";
 
 import { serveBurger } from "./../actions";
 import { device } from "./../constants";
-import useAudio from "./../hooks/useAudio";
-import Bell from "./../audio/bell.mp3";
+import useGameAudio from "./../hooks/useGameAudio";
 
 const DroppableContainer = styled.div`
   position: absolute;
@@ -27,7 +26,8 @@ const DroppableContainer = styled.div`
 
 function GameDroppableArea() {
   const dispatch = useDispatch();
-  const [playing, { playAudio }] = useAudio(Bell);
+
+  const [playing, { playOnEveryInteraction }] = useGameAudio("serve");
 
   const ordersComplete = useSelector(
     state => state.gameStatus.orders.length === 0,
@@ -41,7 +41,7 @@ function GameDroppableArea() {
 
   function serveBurgerCallback(res) {
     if (res) {
-      playAudio();
+      playOnEveryInteraction();
     }
   }
 

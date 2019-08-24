@@ -2,16 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 import gameConstants from "./../constants";
-import useAudio from "./../hooks/useAudio";
-import Countdown from "./../audio/countdown.mp3";
+import useGameAudio from "./../hooks/useGameAudio";
 
 import Timer from "./../components/Timer";
 
 function GameTimer() {
   const dispatch = useDispatch();
-  const [playing, { playArgAudio, pauseArgAudio, restartAudio }] = useAudio(
-    Countdown
-  );
+  const [playing, { toggleAudio, restartAudio }] = useGameAudio("countdown");
   const time = useSelector(state => state.gameStatus.time, shallowEqual);
   const lives = useSelector(state => state.gameStatus.lives, shallowEqual);
   const paused = useSelector(state => state.gameStatus.paused, shallowEqual);
@@ -22,18 +19,21 @@ function GameTimer() {
     if (!interval) {
       interval = setInterval(() => {
         if (time > 0 && lives !== 0 && !paused) {
-          if (time <= 7) playArgAudio();
+          if (time <= 7 && !playing) toggleAudio();
           dispatch({ type: gameConstants.UPDATE_TIME, payload: time - 1 });
         } else {
+          if (playing) {
+            toggleAudio();
+          }
+
           restartAudio();
-          pauseArgAudio();
           clearInterval(interval);
         }
       }, 1000);
     }
 
     return () => clearInterval(interval);
-  }, [time, lives, paused]);
+  }, [time, lives, paused, playing]);
 
   return (
     <>

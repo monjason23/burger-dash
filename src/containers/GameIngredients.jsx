@@ -3,12 +3,10 @@ import { useDispatch } from "react-redux";
 import { useDrag, DragPreviewImage } from "react-dnd";
 import { isMobile } from "react-device-detect";
 import useWindowSize from "react-use-window-size";
-
 import Draggable from "react-draggable";
 
 import { updateBurgerContent } from "./../actions";
-import useAudio from "./../hooks/useAudio";
-import Pop from "./../audio/pop.mp3";
+import useGameAudio from "./../hooks/useGameAudio";
 
 import Ingredients from "./../components/Ingredients";
 
@@ -61,7 +59,7 @@ function GameIngredients() {
 
 function DraggableItemIngredient(props) {
   const [dragging, setDragging] = useState(false);
-  const [playing, { playAudio, playErrorAudio }] = useAudio(Pop);
+  const [playing, { playOnEveryInteraction }] = useGameAudio("pop");
 
   const dispatch = useDispatch();
   const imgSrc = require(`./../img/${props.data.name}.png`);
@@ -79,8 +77,8 @@ function DraggableItemIngredient(props) {
   });
 
   function updateBurgerContentCallback(res) {
-    if (res) playAudio();
-    else playErrorAudio();
+    if (res) playOnEveryInteraction();
+    else playOnEveryInteraction("incorrect");
   }
 
   function handleOnStart(e) {

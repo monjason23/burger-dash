@@ -23,9 +23,7 @@ export function updateBurgerContent(payload, cb) {
       type: gameConstants.ADD_INGREDIENT_BURGER,
       payload: payloadWithKey
     });
-
     dispatch({ type: gameConstants.UPDATE_ORDERS });
-
     cb && cb(true);
   };
 }

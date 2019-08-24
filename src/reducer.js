@@ -70,7 +70,6 @@ const gameStatus = (state = gameInitialStatus, action) => {
     }
 
     case gameConstants.UPDATE_WINSTREAK: {
-      console.log("case", action.payload);
       return update(state, {
         winStreak: { $set: action.payload ? state.winStreak + 1 : 1 }
       });

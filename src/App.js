@@ -16,8 +16,7 @@ import GameWelcomeScreen from "./containers/GameWelcomeScreen";
 import GameModalResult from "./containers/GameModalResult";
 import GameModalSettings from "./containers/GameModalSettings";
 
-import useAudio from "./hooks/useAudio";
-import BackgroundMusic from "./audio/bg.mp3";
+import useGameAudio from "./hooks/useGameAudio";
 
 import gameConstants, { device } from "./constants";
 
@@ -57,7 +56,7 @@ function App() {
 
   const dispatch = useDispatch();
 
-  const [playing, { toggle }] = useAudio(BackgroundMusic, {
+  const [playing, { toggleAudio }] = useGameAudio("bg", {
     loop: true
   });
 
@@ -66,7 +65,7 @@ function App() {
   function handleGame(bool) {
     return function() {
       setStart(bool);
-      toggle();
+      toggleAudio();
     };
   }
 
@@ -74,14 +73,14 @@ function App() {
     function onBlur() {
       setBlurred(true);
       if (playing) {
-        toggle();
+        toggleAudio();
       }
     }
 
     function onFocus() {
       setBlurred(false);
       if (!playing && start) {
-        toggle();
+        toggleAudio();
       }
     }
 
@@ -97,7 +96,7 @@ function App() {
       window.removeEventListener("blur", onBlur);
       window.removeEventListener("focus", onFocus);
     };
-  }, [start, playing, toggle, blurred]);
+  }, [start, playing, blurred]);
 
   return (
     <div className="App">
