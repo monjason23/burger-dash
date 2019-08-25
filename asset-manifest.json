@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/burger-dash/static/css/main.3b66198d.chunk.css",
-    "main.js": "/burger-dash/static/js/main.a1694c1a.chunk.js",
-    "main.js.map": "/burger-dash/static/js/main.a1694c1a.chunk.js.map",
+    "main.css": "/burger-dash/static/css/main.3fb4a28f.chunk.css",
+    "main.js": "/burger-dash/static/js/main.51e8a619.chunk.js",
+    "main.js.map": "/burger-dash/static/js/main.51e8a619.chunk.js.map",
     "runtime~main.js": "/burger-dash/static/js/runtime~main.34290d06.js",
     "runtime~main.js.map": "/burger-dash/static/js/runtime~main.34290d06.js.map",
-    "static/js/2.95ea7fa5.chunk.js": "/burger-dash/static/js/2.95ea7fa5.chunk.js",
-    "static/js/2.95ea7fa5.chunk.js.map": "/burger-dash/static/js/2.95ea7fa5.chunk.js.map",
+    "static/js/2.8bd40962.chunk.js": "/burger-dash/static/js/2.8bd40962.chunk.js",
+    "static/js/2.8bd40962.chunk.js.map": "/burger-dash/static/js/2.8bd40962.chunk.js.map",
     "index.html": "/burger-dash/index.html",
-    "precache-manifest.cd84f50d801d6b606151661518520abb.js": "/burger-dash/precache-manifest.cd84f50d801d6b606151661518520abb.js",
+    "precache-manifest.bdfb5b677fc403592fd6a2044e7b53f6.js": "/burger-dash/precache-manifest.bdfb5b677fc403592fd6a2044e7b53f6.js",
     "service-worker.js": "/burger-dash/service-worker.js",
-    "static/css/main.3b66198d.chunk.css.map": "/burger-dash/static/css/main.3b66198d.chunk.css.map",
+    "static/css/main.3fb4a28f.chunk.css.map": "/burger-dash/static/css/main.3fb4a28f.chunk.css.map",
     "static/media/Flash.png": "/burger-dash/static/media/Flash.92fa4833.png",
     "static/media/Heart.svg": "/burger-dash/static/media/Heart.ab952194.svg",
     "static/media/Lettuce.png": "/burger-dash/static/media/Lettuce.af0fd209.png",
@@ -21,7 +21,6 @@
     "static/media/bg.png": "/burger-dash/static/media/bg.b6be13de.png",
     "static/media/bg.mp3": "/burger-dash/static/media/bg.c59df165.mp3",
     "static/media/countdown.mp3": "/burger-dash/static/media/countdown.6bc7a103.mp3",
-    "static/media/heart.svg": "/burger-dash/static/media/heart.ab952194.svg",
     "static/media/pop.mp3": "/burger-dash/static/media/pop.53603f93.mp3",
     "static/media/wrong.mp3": "/burger-dash/static/media/wrong.1740f61a.mp3"
   }
