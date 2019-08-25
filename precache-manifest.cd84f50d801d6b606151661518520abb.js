@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c540fbce73c9edc0523f8abb75b72f26",
+    "revision": "034693b6cbc562f3417e6a9dad4242b7",
     "url": "/burger-dash/index.html"
   },
   {
-    "revision": "9183502bab73edd02fec",
+    "revision": "e5d6da84b869879dd768",
     "url": "/burger-dash/static/css/main.3b66198d.chunk.css"
   },
   {
-    "revision": "c79c709b30c1b4385309",
-    "url": "/burger-dash/static/js/2.dca47f60.chunk.js"
+    "revision": "33ebfaf571cb70adee94",
+    "url": "/burger-dash/static/js/2.95ea7fa5.chunk.js"
   },
   {
-    "revision": "9183502bab73edd02fec",
-    "url": "/burger-dash/static/js/main.5ad2119f.chunk.js"
+    "revision": "e5d6da84b869879dd768",
+    "url": "/burger-dash/static/js/main.a1694c1a.chunk.js"
   },
   {
     "revision": "a1318d97235daa6de168",
@@ -58,6 +58,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "6bc7a103d316437971eadd011faec263",
     "url": "/burger-dash/static/media/countdown.6bc7a103.mp3"
+  },
+  {
+    "revision": "ab952194d893d4358dc6fa0132b128cb",
+    "url": "/burger-dash/static/media/heart.ab952194.svg"
   },
   {
     "revision": "53603f930019b47c0f697ba156d56d75",
