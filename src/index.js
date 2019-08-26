@@ -12,6 +12,7 @@ import { isMobile } from "react-device-detect";
 
 import HTML5Backend from "react-dnd-html5-backend";
 import TouchBackend from "react-dnd-touch-backend";
+import DotLoader from "react-spinners/DotLoader";
 
 //Images
 import BottomBun from "./img/BottomBun.png";
@@ -26,6 +27,7 @@ import Plate from "./img/Plate.png";
 import Star from "./img/Star.png";
 import Flash from "./img/Flash.png";
 import Bg from "./img/bg.png";
+import Heart from "./img/Heart.svg";
 
 import "./index.css";
 import App from "./App";
@@ -41,6 +43,7 @@ ReactDOM.render(
   <Provider store={store}>
     <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
       <Preload
+        autoResolveDelay={3000}
         images={[
           BottomBun,
           TopBun,
@@ -53,9 +56,21 @@ ReactDOM.render(
           Plate,
           Star,
           Flash,
-          Bg
+          Bg,
+          Heart
         ]}
-        loadingIndicator={<div>Loading..</div>}
+        loadingIndicator={
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)"
+            }}
+          >
+            <DotLoader color="#FF9700" />
+          </div>
+        }
         resolveOnError={true}
         mountChildren={true}
       >
