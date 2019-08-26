@@ -12,7 +12,7 @@ import { isMobile } from "react-device-detect";
 
 import HTML5Backend from "react-dnd-html5-backend";
 import TouchBackend from "react-dnd-touch-backend";
-import DotLoader from "react-spinners/DotLoader";
+import FadeLoader from "react-spinners/FadeLoader";
 
 //Images
 import BottomBun from "./img/BottomBun.png";
@@ -64,10 +64,19 @@ ReactDOM.render(
               position: "absolute",
               top: "50%",
               left: "50%",
-              transform: "translate(-50%, -50%)"
+              transform: "translate(-50%, -50%)",
+              textAlign: "center"
             }}
           >
-            <DotLoader color="#FF9700" />
+            <div style={{ display: "inline-block", padding: "16px" }}>
+              <FadeLoader color="#FF9700" />
+            </div>
+            <br />
+            <small>
+              <strong style={{ fontSize: "11px" }}>
+                Best viewed in Chrome
+              </strong>
+            </small>
           </div>
         }
         resolveOnError={true}
