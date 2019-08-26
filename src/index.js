@@ -43,7 +43,6 @@ ReactDOM.render(
   <Provider store={store}>
     <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
       <Preload
-        autoResolveDelay={3000}
         images={[
           BottomBun,
           TopBun,
