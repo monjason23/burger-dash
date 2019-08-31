@@ -22,23 +22,6 @@ const helpers = {
     return currentOrders;
   },
 
-  absorbEvent: function(e) {
-    e.preventDefault && e.preventDefault();
-    e.stopPropagation && e.stopPropagation();
-    e.cancelBubble = true;
-    e.returnValue = false;
-    return false;
-  },
-
-  preventLongPress: function() {
-    return {
-      onTouchStart: this.absorbEvent,
-      onTouchMove: this.absorbEvent,
-      onTouchEnd: this.absorbEvent,
-      onTouchCancel: this.absorbEvent
-    };
-  },
-
   setNumberOfOrders: function(time) {
     if (time >= 40) {
       return 2;
