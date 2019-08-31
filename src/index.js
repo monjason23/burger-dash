@@ -71,7 +71,7 @@ ReactDOM.render(
             <div style={{ display: "inline-block", padding: "16px" }}>
               <FadeLoader color="#FF9700" />
             </div>
-            <br />
+
             <small>
               <strong style={{ fontSize: "11px" }}>
                 Best viewed in Chrome

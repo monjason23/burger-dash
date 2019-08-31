@@ -8,6 +8,7 @@ const Button = styled.button`
   color: ${props => (props.primary || props.social ? "#fff" : "inherit")};
   border-radius: 8px;
   margin: 4px;
+  cursor: pointer;
 
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 

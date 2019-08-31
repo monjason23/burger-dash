@@ -30,6 +30,11 @@ const Container = styled.div`
 const Item = styled(a.div)`
   position: relative;
   width: 72px;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 
   img {
     will-change: transform;

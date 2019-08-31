@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDrop } from "react-dnd";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
@@ -44,6 +44,14 @@ function GameDroppableArea() {
       playOnEveryInteraction();
     }
   }
+
+  useEffect(() => {
+    if (!ordersComplete) return;
+
+    setTimeout(() => {
+      dispatch(serveBurger(serveBurgerCallback));
+    }, 200);
+  }, [ordersComplete]);
 
   const [{ canDrop }, drop] = useDrop({
     accept: "BurgerIngredient",
