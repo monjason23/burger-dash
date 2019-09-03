@@ -52,8 +52,6 @@ export function serveBurger(cb) {
         payload: exactOrder
       });
 
-      console.log("SCORE TO ADD", winStreak * (exactOrder ? 10 : 5));
-
       dispatch({
         type: gameConstants.UPDATE_SCORE,
         payload: winStreak * (exactOrder ? 10 : 5)

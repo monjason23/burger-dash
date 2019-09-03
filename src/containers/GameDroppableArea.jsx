@@ -34,11 +34,6 @@ function GameDroppableArea() {
     shallowEqual
   );
 
-  function handleOnClick() {
-    if (!ordersComplete) return;
-    dispatch(serveBurger(serveBurgerCallback));
-  }
-
   function serveBurgerCallback(res) {
     if (res) {
       playOnEveryInteraction();
@@ -47,7 +42,6 @@ function GameDroppableArea() {
 
   useEffect(() => {
     if (!ordersComplete) return;
-
     setTimeout(() => {
       dispatch(serveBurger(serveBurgerCallback));
     }, 200);
@@ -58,13 +52,7 @@ function GameDroppableArea() {
     drop: () => ({ name: "Burger" })
   });
 
-  return (
-    <DroppableContainer
-      onClick={handleOnClick}
-      className="droppable-area"
-      ref={drop}
-    />
-  );
+  return <DroppableContainer className="droppable-area" ref={drop} />;
 }
 
 export default GameDroppableArea;
