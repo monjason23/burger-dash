@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag, DragPreviewImage } from "react-dnd";
 import { isMobile } from "react-device-detect";
-import useWindowSize from "react-use-window-size";
 import Draggable from "react-draggable";
 
 import { updateBurgerContent } from "./../actions";
 import useGameAudio from "./../hooks/useGameAudio";
 
 import Ingredients from "./../components/Ingredients";
+import useViewPort from "../hooks/useViewPort";
 
 function GameIngredients() {
-  const { width } = useWindowSize();
+  const [{ width }] = useViewPort();
 
   const IngredientsArray = [
     {
