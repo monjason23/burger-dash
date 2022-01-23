@@ -58,7 +58,7 @@ function GameWelcomeScreen(props) {
         <br />
         <p>
           <small style={{ fontSize: "11px" }}>
-            Designed and developed by: <br /> <strong>Mon Jason Fabico</strong>
+            Designed and developed by: <br /> <strong>Mon</strong>
             <br />
             <br />
             <strong>Best viewed in Chrome</strong>
