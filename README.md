@@ -7,6 +7,6 @@ Play it here: http://monjason23.github.io/burger-dash <br/>
 
 ## Instruction:
 
-Drag and drop all correct ingredients to the burger before the time ends. <br/>
-1 life will be deducted for a wrong ingredient dropped. <br/>
+Drag and drop all correct ingredients onto the burger before the time ends. <br/>
+1 life will be deducted for every wrong ingredient dropped. <br/>
 Enjoy! 
